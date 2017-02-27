@@ -1,0 +1,7 @@
+name: Single Date Time Picker
+type: module
+description: Date time picker form element using the xdan jQuery Plugin Date and Time Picker library - https://github.com/xdan/datetimepicker
+core: '8.x'
+
+dependencies:
+  - datetime
