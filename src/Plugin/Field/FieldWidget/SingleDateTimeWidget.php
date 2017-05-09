@@ -17,7 +17,7 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
  *
  * @FieldWidget(
  *   id = "single_date_time_widget",
- *   label = @Translation("Single Date Time picker"),
+ *   label = @Translation("Single Date Time Picker"),
  *   field_types = {
  *     "datetime"
  *   }

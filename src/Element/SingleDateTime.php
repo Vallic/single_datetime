@@ -53,7 +53,17 @@ class SingleDateTime extends FormElement {
    */
   public static function processSingleDateTime(&$element, FormStateInterface $form_state, &$complete_form) {
     // Push field type to JS for changing between date only and time fields.
-    $complete_form['#attached']['drupalSettings']['single_datetime'][$element['#id']] = json_encode($element['#date_type']);
+    // Difference between date and date range fields.
+    if (isset($element['#date_type'])) {
+      $complete_form['#attached']['drupalSettings']['single_datetime'][$element['#id']] = json_encode($element['#date_type']);
+    }
+
+    else {
+      // Combine date range formats.
+      $range_date_type = $element['#date_date_element'] . $element['#date_time_element'];
+      $complete_form['#attached']['drupalSettings']['single_datetime'][$element['#id']] = json_encode($range_date_type);
+    }
+
     $complete_form['#attached']['library'][] = 'single_datetime/datetimepicker';
     return $element;
   }
