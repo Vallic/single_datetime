@@ -94,12 +94,12 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     $element = parent::formElement($items, $delta, $element, $form, $form_state);
 
     // Field type.
-    $element['value'] = array(
+    $element['value'] = [
       '#type' => 'single_date_time',
       '#date_timezone' => drupal_get_user_timezone(),
       '#default_value' => NULL,
       '#date_type' => NULL,
-    );
+    ];
 
     // Identify the type of date and time elements to use.
     switch ($this->getFieldSetting('datetime_type')) {

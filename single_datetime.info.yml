@@ -4,4 +4,4 @@ description: Date time picker form element using the xdan jQuery Plugin Date and
 core: '8.x'
 
 dependencies:
-  - datetime
+  - drupal:datetime

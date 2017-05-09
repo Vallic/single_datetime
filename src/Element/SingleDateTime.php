@@ -43,8 +43,8 @@ class SingleDateTime extends FormElement {
    *   The $element with prepared variables ready for input.html.twig.
    */
   public static function preRenderSingleDateTime(array $element) {
-    Element::setAttributes($element, array('id', 'name', 'value', 'size'));
-    static::setAttributes($element, array('form-text'));
+    Element::setAttributes($element, ['id', 'name', 'value', 'size']);
+    static::setAttributes($element, ['form-text']);
     return $element;
   }
 
@@ -67,10 +67,10 @@ class SingleDateTime extends FormElement {
    * @return array
    *   Some Desc.
    */
-  public static function settings(array $values = array()) {
-    $settings = array(
+  public static function settings(array $values = []) {
+    $settings = [
       'lang' => 'en',
-    );
+    ];
 
     return array_merge($settings, $values);
   }
