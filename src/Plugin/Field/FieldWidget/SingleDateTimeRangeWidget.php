@@ -143,6 +143,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
 
     // Start value.
     $element['value'] = [
+      '#title' => $this->t('Start date'),
       '#type' => 'single_date_time',
       '#date_timezone' => drupal_get_user_timezone(),
       '#default_value' => NULL,
@@ -150,6 +151,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
 
     // End value.
     $element['end_value'] = [
+      '#title' => $this->t('End date'),
       '#type' => 'single_date_time',
       '#date_timezone' => drupal_get_user_timezone(),
       '#default_value' => NULL,
