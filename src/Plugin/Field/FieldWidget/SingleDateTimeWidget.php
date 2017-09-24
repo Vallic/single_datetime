@@ -95,6 +95,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
 
     // Field type.
     $element['value'] = [
+      '#title' => $element['#title'],
       '#type' => 'single_date_time',
       '#date_timezone' => drupal_get_user_timezone(),
       '#default_value' => NULL,
