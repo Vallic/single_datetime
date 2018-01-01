@@ -52,25 +52,34 @@ class SingleDateTime extends FormElement {
    * {@inheritdoc}
    */
   public static function processSingleDateTime(&$element, FormStateInterface $form_state, &$complete_form) {
+    // Get system regional settings.
+    $first_day = \Drupal::config('system.date')->get('first_day');
+
+    // Default settings.
+    $settings = [
+      'hour_format' => $element['#hour_format'],
+      'first_day' => $first_day,
+    ];
+
     // Push field type to JS for changing between date only and time fields.
     // Difference between date and date range fields.
     if (isset($element['#date_type'])) {
-      $complete_form['#attached']['drupalSettings']['single_datetime'][$element['#id']] = [
-        'widget_type' => $element['#date_type'],
-        'hour_format' => $element['#hour_format'],
-      ];
+      $settings['widget_type'] = $element['#date_type'];
     }
 
     else {
       // Combine date range formats.
       $range_date_type = $element['#date_date_element'] . $element['#date_time_element'];
-      $complete_form['#attached']['drupalSettings']['single_datetime'][$element['#id']] = [
-        'widget_type' => $range_date_type,
-        'hour_format' => $element['#hour_format'],
-      ];
+      $settings['widget_type'] = $range_date_type;
+
     }
 
+    // Attach settings array.
+    $complete_form['#attached']['drupalSettings']['single_datetime'][$element['#id']] = $settings;
+
+    // Attach library.
     $complete_form['#attached']['library'][] = 'single_datetime/datetimepicker';
+
     return $element;
   }
 

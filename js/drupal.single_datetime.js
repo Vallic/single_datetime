@@ -18,6 +18,9 @@
           // Get hour format - 12 or 24.
           var hourFormat = value['hour_format'];
 
+          // Get first day in week from Drupal.
+          var startDayWeek = value['first_day'];
+
           // Default values (used for dates only).
           var date_type = 'Y-m-d';
           var allow_timepicker = false;
@@ -36,6 +39,8 @@
             formatTime: hours_format,
             lazyInit: true,
             timepicker: allow_timepicker,
+            todayButton: true,
+            dayOfWeekStart: startDayWeek,
             allowTimes: [
               '00:00',
               '00:15',
