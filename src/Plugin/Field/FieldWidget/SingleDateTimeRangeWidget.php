@@ -29,6 +29,46 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
   /**
    * {@inheritdoc}
    */
+  public static function defaultSettings() {
+    return array(
+      'hour_format' => '24h',
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsForm(array $form, FormStateInterface $form_state) {
+
+    $elements = array();
+    $elements['hour_format'] = array(
+      '#type' => 'select',
+      '#title' => $this->t('Hours Format'),
+      '#description' => $this->t('Select the hours format'),
+      '#options' => array(
+        '12h' => $this->t('12 Hours'),
+        '24h' => $this->t('24 Hours'),
+      ),
+      '#default_value' => $this->getSetting('hour_format'),
+      '#required' => TRUE,
+    );
+    return $elements;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsSummary() {
+    $summary = [];
+
+    $summary[] = t('Hours Format: @hour_format', ['@hour_format' => $this->getSetting('hour_format')]);
+
+    return $summary;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
     // The widget form element type has transformed the value to a
     // DrupalDateTime object at this point. We need to convert it back to the
@@ -174,6 +214,11 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
         $time_type = 'time';
         $date_format = $this->dateStorage->load('html_date')->getPattern();
         $time_format = $this->dateStorage->load('html_time')->getPattern();
+
+        if ($this->getSetting('hour_format') === '12h') {
+          $time_format = 'h:i:s A';
+        }
+
         break;
     }
 
@@ -184,6 +229,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#date_time_format' => $time_format,
       '#date_time_element' => $time_type,
       '#date_time_callbacks' => [],
+      '#hour_format' => $this->getSetting('hour_format'),
     ];
 
     $element['end_value'] += [
@@ -193,6 +239,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#date_time_format' => $time_format,
       '#date_time_element' => $time_type,
       '#date_time_callbacks' => [],
+      '#hour_format' => $this->getSetting('hour_format'),
     ];
 
     // Make single date format from date / time parts.

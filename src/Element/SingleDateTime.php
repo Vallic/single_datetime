@@ -64,7 +64,10 @@ class SingleDateTime extends FormElement {
     else {
       // Combine date range formats.
       $range_date_type = $element['#date_date_element'] . $element['#date_time_element'];
-      $complete_form['#attached']['drupalSettings']['single_datetime'][$element['#id']] = json_encode($range_date_type);
+      $complete_form['#attached']['drupalSettings']['single_datetime'][$element['#id']] = [
+        'widget_type' => $range_date_type,
+        'hour_format' => $element['#hour_format'],
+      ];
     }
 
     $complete_form['#attached']['library'][] = 'single_datetime/datetimepicker';

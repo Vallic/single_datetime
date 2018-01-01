@@ -23,11 +23,11 @@
           var allow_timepicker = false;
 
           // Set the hour format.
-          var hours_format = (hourFormat === '12h') ? 'g:i A' : 'H:i';
+          var hours_format = (hourFormat === '12h') ? 'h:i A' : 'H:i';
 
           // If is date & time field.
           if (widgetType === 'datetime') {
-            date_type = (hourFormat === '12h') ? 'Y-m-d g:i:s A' : 'Y-m-d H:i:s';
+            date_type = (hourFormat === '12h') ? 'Y-m-d h:i:s A' : 'Y-m-d H:i:s';
             allow_timepicker = true;
           }
 
