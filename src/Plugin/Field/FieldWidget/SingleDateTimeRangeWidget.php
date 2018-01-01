@@ -147,6 +147,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#type' => 'single_date_time',
       '#date_timezone' => drupal_get_user_timezone(),
       '#default_value' => NULL,
+      '#required' => $element['#required'],
     ];
 
     // End value.
@@ -155,6 +156,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#type' => 'single_date_time',
       '#date_timezone' => drupal_get_user_timezone(),
       '#default_value' => NULL,
+      '#required' => $element['#required'],
     ];
 
     // Identify the type of date and time elements to use.
