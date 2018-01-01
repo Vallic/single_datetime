@@ -60,12 +60,11 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
   public function settingsSummary() {
     $summary = [];
 
-    $hrs_format = $this->getSetting('hour_format');
     $summary[] = t('Hours Format: @hour_format', ['@hour_format' => $this->getSetting('hour_format')]);
 
     return $summary;
   }
-  
+
   /**
    * {@inheritdoc}
    */
@@ -164,7 +163,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
 
         // Assign the time format, because time will be saved in 24hrs format
         // in database.
-        $format = ($this->getSetting('hour_format') == '12h') ? 'Y-m-d g:i:s A' : 'Y-m-d H:i:s';
+        $format = ($this->getSetting('hour_format') == '12h') ? 'Y-m-d h:i:s A' : 'Y-m-d H:i:s';
         break;
     }
 
