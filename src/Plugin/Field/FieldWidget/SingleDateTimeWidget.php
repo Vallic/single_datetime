@@ -100,6 +100,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
       '#date_timezone' => drupal_get_user_timezone(),
       '#default_value' => NULL,
       '#date_type' => NULL,
+      '#required' => $element['#required'],
     ];
 
     // Identify the type of date and time elements to use.

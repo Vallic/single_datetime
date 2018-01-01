@@ -44,7 +44,7 @@ class SingleDateTime extends FormElement {
    */
   public static function preRenderSingleDateTime(array $element) {
     Element::setAttributes($element, ['id', 'name', 'value', 'size']);
-    static::setAttributes($element, ['form-text']);
+    static::setAttributes($element, ['form-date']);
     return $element;
   }
 
