@@ -30,7 +30,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
    */
   public static function defaultSettings() {
     return array(
-      'hrs_format' => '12h',
+      'hour_format' => '24h',
     );
   }
 
@@ -40,7 +40,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
   public function settingsForm(array $form, FormStateInterface $form_state) {
 
     $elements = array();
-    $elements['hrs_format'] = array(
+    $elements['hour_format'] = array(
       '#type' => 'select',
       '#title' => $this->t('Hours Format'),
       '#description' => $this->t('Select the hours format'),
@@ -48,7 +48,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
         '12h' => $this->t('12 Hours'),
         '24h' => $this->t('24 Hours'),
       ),
-      '#default_value' => $this->getSetting('hrs_format'),
+      '#default_value' => $this->getSetting('hour_format'),
       '#required' => TRUE,
     );
     return $elements;
@@ -60,8 +60,8 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
   public function settingsSummary() {
     $summary = [];
 
-    $hrs_format = $this->getSetting('hrs_format');
-    $summary[] = t('Hours Format: @hrs_format', ['@hrs_format' => $this->getSetting('hrs_format')]);
+    $hrs_format = $this->getSetting('hour_format');
+    $summary[] = t('Hours Format: @hour_format', ['@hour_format' => $this->getSetting('hour_format')]);
 
     return $summary;
   }
@@ -163,8 +163,8 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
         $element['value']['#date_type'] = $this->getFieldSetting('datetime_type');
 
         // Assign the time format, because time will be saved in 24hrs format
-        // in database. 
-        $format = ($this->getSetting('hrs_format') == '12h') ? 'Y-m-d g:i:s A' : 'Y-m-d H:i:s';
+        // in database.
+        $format = ($this->getSetting('hour_format') == '12h') ? 'Y-m-d g:i:s A' : 'Y-m-d H:i:s';
         break;
     }
 
@@ -184,8 +184,8 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
       // Manual define form for input field.
       $element['value']['#default_value'] = $date->format($format);
     }
-    
-    $element['value']['#hrs_format'] = $this->getSetting('hrs_format');
+
+    $element['value']['#hour_format'] = $this->getSetting('hour_format');
     return $element;
   }
 

@@ -4,6 +4,7 @@
 
 (function ($, Drupal, drupalSettings) {
   'use strict';
+
   Drupal.behaviors.single_datetime = {
     attach: function (context, settings) {
 
@@ -11,19 +12,26 @@
 
         $.each(drupalSettings.single_datetime, function (index, value) {
 
+          // Get widget type.
+          var widgetType = value['widget_type'];
+
+          // Get hour format - 12 or 24.
+          var hourFormat = value['hour_format'];
+
           // Default values (used for dates only).
           var date_type = 'Y-m-d';
           var allow_timepicker = false;
-          // Set the hour format
-          var hours_format = (value['hrs_format'] == '12h') ? 'g:i A' : 'H:i';
+
+          // Set the hour format.
+          var hours_format = (hourFormat === '12h') ? 'g:i A' : 'H:i';
 
           // If is date & time field.
-          if (value['data_type'] === '"datetime"') {
-            date_type = ( value['hrs_format'] == '12h' ) ? 'Y-m-d g:i:s A' : 'Y-m-d H:i:s';
+          if (widgetType === 'datetime') {
+            date_type = (hourFormat === '12h') ? 'Y-m-d g:i:s A' : 'Y-m-d H:i:s';
             allow_timepicker = true;
           }
 
-          $('#' + index).datetimepicker({
+          $("#" + index).datetimepicker({
             format: date_type,
             formatTime: hours_format,
             lazyInit: true,
