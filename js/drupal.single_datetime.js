@@ -14,15 +14,18 @@
           // Default values (used for dates only).
           var date_type = 'Y-m-d';
           var allow_timepicker = false;
+          // Set the hour format
+          var hours_format = (value['hrs_format'] == '12h') ? 'g:i A' : 'H:i';
 
           // If is date & time field.
-          if (value === '"datetime"') {
-            date_type = 'Y-m-d H:i:s';
+          if (value['data_type'] === '"datetime"') {
+            date_type = ( value['hrs_format'] == '12h' ) ? 'Y-m-d g:i:s A' : 'Y-m-d H:i:s';
             allow_timepicker = true;
           }
 
           $('#' + index).datetimepicker({
             format: date_type,
+            formatTime: hours_format,
             lazyInit: true,
             timepicker: allow_timepicker,
             allowTimes: [

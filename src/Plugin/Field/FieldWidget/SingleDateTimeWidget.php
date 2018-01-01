@@ -28,6 +28,47 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
   /**
    * {@inheritdoc}
    */
+  public static function defaultSettings() {
+    return array(
+      'hrs_format' => '12h',
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsForm(array $form, FormStateInterface $form_state) {
+
+    $elements = array();
+    $elements['hrs_format'] = array(
+      '#type' => 'select',
+      '#title' => $this->t('Hours Format'),
+      '#description' => $this->t('Select the hours format'),
+      '#options' => array(
+        '12h' => $this->t('12 Hours'),
+        '24h' => $this->t('24 Hours'),
+      ),
+      '#default_value' => $this->getSetting('hrs_format'),
+      '#required' => TRUE,
+    );
+    return $elements;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsSummary() {
+    $summary = [];
+
+    $hrs_format = $this->getSetting('hrs_format');
+    $summary[] = t('Hours Format: @hrs_format', ['@hrs_format' => $this->getSetting('hrs_format')]);
+
+    return $summary;
+  }
+  
+  /**
+   * {@inheritdoc}
+   */
   public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
 
     foreach ($values as &$item) {
@@ -121,8 +162,9 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
         // Type of the field.
         $element['value']['#date_type'] = $this->getFieldSetting('datetime_type');
 
-        // Manually define format for input field (avoid T).
-        $format = 'Y-m-d H:i:s';
+        // Assign the time format, because time will be saved in 24hrs format
+        // in database. 
+        $format = ($this->getSetting('hrs_format') == '12h') ? 'Y-m-d g:i:s A' : 'Y-m-d H:i:s';
         break;
     }
 
@@ -142,7 +184,8 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
       // Manual define form for input field.
       $element['value']['#default_value'] = $date->format($format);
     }
-
+    
+    $element['value']['#hrs_format'] = $this->getSetting('hrs_format');
     return $element;
   }
 

@@ -55,7 +55,7 @@ class SingleDateTime extends FormElement {
     // Push field type to JS for changing between date only and time fields.
     // Difference between date and date range fields.
     if (isset($element['#date_type'])) {
-      $complete_form['#attached']['drupalSettings']['single_datetime'][$element['#id']] = json_encode($element['#date_type']);
+      $complete_form['#attached']['drupalSettings']['single_datetime'][$element['#id']] = ['data_type' => json_encode($element['#date_type']),'hrs_format' => $element['#hrs_format']];
     }
 
     else {
