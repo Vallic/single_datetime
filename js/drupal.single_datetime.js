@@ -22,23 +22,23 @@
           var startDayWeek = value['first_day'];
 
           // Default values (used for dates only).
-          var date_type = 'Y-m-d';
-          var allow_timepicker = false;
+          var dateType = 'Y-m-d';
+          var allowTimepicker = false;
 
           // Set the hour format.
-          var hours_format = (hourFormat === '12h') ? 'h:i A' : 'H:i';
+          var hoursFormat = (hourFormat === '12h') ? 'h:i A' : 'H:i';
 
           // If is date & time field.
           if (widgetType === 'datetime') {
-            date_type = (hourFormat === '12h') ? 'Y-m-d h:i:s A' : 'Y-m-d H:i:s';
-            allow_timepicker = true;
+            dateType = (hourFormat === '12h') ? 'Y-m-d h:i:s A' : 'Y-m-d H:i:s';
+            allowTimepicker = true;
           }
 
           $("#" + index).datetimepicker({
-            format: date_type,
-            formatTime: hours_format,
+            format: dateType,
+            formatTime: hoursFormat,
             lazyInit: true,
-            timepicker: allow_timepicker,
+            timepicker: allowTimepicker,
             todayButton: true,
             dayOfWeekStart: startDayWeek,
             allowTimes: [

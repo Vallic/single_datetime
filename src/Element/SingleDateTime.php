@@ -71,7 +71,6 @@ class SingleDateTime extends FormElement {
       // Combine date range formats.
       $range_date_type = $element['#date_date_element'] . $element['#date_time_element'];
       $settings['widget_type'] = $range_date_type;
-
     }
 
     // Attach settings array.
