@@ -12,6 +12,9 @@
 
         $.each(drupalSettings.single_datetime, function (index, value) {
 
+          // Setting the current language for the calendar.
+          var lang = drupalSettings.path.currentLanguage;
+
           // Get widget type.
           var widgetType = value['widget_type'];
 
@@ -35,6 +38,7 @@
           }
 
           $("#" + index).datetimepicker({
+            lang: lang,
             format: dateType,
             formatTime: hoursFormat,
             lazyInit: true,
