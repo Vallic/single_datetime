@@ -67,12 +67,20 @@ class SingleDateTime extends FormElement {
       }
     }
 
+    // Get excluded dates.
+    $exclude_date = [];
+
+    if (!empty($element['#exclude_date'])) {
+      $exclude_date = explode("\n", $element['#exclude_date']);
+    }
+
     // Default settings.
     $settings = [
       'hour_format' => $element['#hour_format'],
       'allow_times' => intval($element['#allow_times']),
       'first_day' => $first_day,
       'disable_days' => $disabled_days,
+      'exclude_date' => $exclude_date,
     ];
 
     // Push field type to JS for changing between date only and time fields.

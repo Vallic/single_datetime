@@ -34,6 +34,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       'hour_format' => '24h',
       'allow_times' => '15',
       'disable_days' => [],
+      'exclude_date' => '',
     );
   }
 
@@ -84,6 +85,13 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#default_value' => $this->getSetting('disable_days'),
       '#required' => FALSE,
     );
+    $elements['exclude_date'] = array(
+      '#type' => 'textarea',
+      '#title' => $this->t('Disable specific dates from calendar'),
+      '#description' => $this->t('Enter days in following format d.m.Y etc. 31.12.2018. Each date in new line. This is used for specific dates, if you want to disable all weekends use settings above, not this field.'),
+      '#default_value' => $this->getSetting('exclude_date'),
+      '#required' => FALSE,
+    );
     return $elements;
   }
 
@@ -116,6 +124,8 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
     $disabled_days = implode(',', $disabled_days);
 
     $summary[] = t('Disabled days: @disabled_days', ['@disabled_days' => !empty($disabled_days) ? $disabled_days : t('None')]);
+
+    $summary[] = t('Disabled dates: @disabled_dates', ['@disabled_dates' => !empty($this->getSetting('exclude_date')) ? $this->getSetting('exclude_date') : t('None')]);
 
     return $summary;
   }
@@ -286,6 +296,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#hour_format' => $this->getSetting('hour_format'),
       '#allow_times' => $this->getSetting('allow_times'),
       '#disable_days' => $this->getSetting('disable_days'),
+      '#exclude_date' => $this->getSetting('exclude_date'),
     ];
 
     $element['end_value'] += [
@@ -298,6 +309,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#hour_format' => $this->getSetting('hour_format'),
       '#allow_times' => $this->getSetting('allow_times'),
       '#disable_days' => $this->getSetting('disable_days'),
+      '#exclude_date' => $this->getSetting('exclude_date'),
     ];
 
     // Make single date format from date / time parts.

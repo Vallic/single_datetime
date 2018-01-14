@@ -63,6 +63,9 @@
           // Get disabled days.
           var disabledDays = value['disable_days'];
 
+          // Get excluded dates.
+          var excludeDates = value['exclude_date'];
+
           // Set the hour format.
           var hoursFormat = (hourFormat === '12h') ? 'h:i A' : 'H:i';
 
@@ -82,6 +85,8 @@
             dayOfWeekStart: startDayWeek,
             allowTimes: allowedTimes,
             disabledWeekDays: disabledDays,
+            disabledDates: excludeDates,
+            formatDate: 'd.m.Y',
           });
         });
       }
