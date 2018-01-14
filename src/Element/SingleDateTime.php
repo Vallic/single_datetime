@@ -58,6 +58,7 @@ class SingleDateTime extends FormElement {
     // Default settings.
     $settings = [
       'hour_format' => $element['#hour_format'],
+      'allow_times' => intval($element['#allow_times']),
       'first_day' => $first_day,
     ];
 

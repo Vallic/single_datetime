@@ -32,6 +32,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
   public static function defaultSettings() {
     return array(
       'hour_format' => '24h',
+      'allow_times' => '15',
     );
   }
 
@@ -52,6 +53,20 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#default_value' => $this->getSetting('hour_format'),
       '#required' => TRUE,
     );
+    $elements['allow_times'] = array(
+      '#type' => 'select',
+      '#title' => $this->t('Minutes granularity'),
+      '#description' => $this->t('Select granularity for minutes in calendar'),
+      '#options' => array(
+        '5' => $this->t('5 minutes'),
+        '10' => $this->t('10 minutes'),
+        '15' => $this->t('15 minutes'),
+        '30' => $this->t('30 minutes'),
+        '60' => $this->t('60 minutes'),
+      ),
+      '#default_value' => $this->getSetting('allow_times'),
+      '#required' => TRUE,
+    );
     return $elements;
   }
 
@@ -62,6 +77,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
     $summary = [];
 
     $summary[] = t('Hours Format: @hour_format', ['@hour_format' => $this->getSetting('hour_format')]);
+    $summary[] = t('Minutes Granularity: @allow_times', ['@allow_times' => $this->getSetting('allow_times')]);
 
     return $summary;
   }
@@ -230,6 +246,8 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#date_time_element' => $time_type,
       '#date_time_callbacks' => [],
       '#hour_format' => $this->getSetting('hour_format'),
+      '#allow_times' => $this->getSetting('allow_times'),
+
     ];
 
     $element['end_value'] += [
@@ -240,6 +258,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#date_time_element' => $time_type,
       '#date_time_callbacks' => [],
       '#hour_format' => $this->getSetting('hour_format'),
+      '#allow_times' => $this->getSetting('allow_times'),
     ];
 
     // Make single date format from date / time parts.
