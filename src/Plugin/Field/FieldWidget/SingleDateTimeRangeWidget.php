@@ -33,6 +33,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
     return array(
       'hour_format' => '24h',
       'allow_times' => '15',
+      'disable_days' => [],
     );
   }
 
@@ -67,6 +68,22 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#default_value' => $this->getSetting('allow_times'),
       '#required' => TRUE,
     );
+    $elements['disable_days'] = array(
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Disable specific days in week'),
+      '#description' => $this->t('Select days which are disabled in calendar, etc. weekends or just Friday'),
+      '#options' => array(
+        '1' => $this->t('Monday'),
+        '2' => $this->t('Tuesday'),
+        '3' => $this->t('Wednesday'),
+        '4' => $this->t('Thursday'),
+        '5' => $this->t('Friday'),
+        '6' => $this->t('Saturday'),
+        '0' => $this->t('Sunday'),
+      ),
+      '#default_value' => $this->getSetting('disable_days'),
+      '#required' => FALSE,
+    );
     return $elements;
   }
 
@@ -78,6 +95,27 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
 
     $summary[] = t('Hours Format: @hour_format', ['@hour_format' => $this->getSetting('hour_format')]);
     $summary[] = t('Minutes Granularity: @allow_times', ['@allow_times' => $this->getSetting('allow_times')]);
+
+    $options = [
+      '1' => $this->t('Monday'),
+      '2' => $this->t('Tuesday'),
+      '3' => $this->t('Wednesday'),
+      '4' => $this->t('Thursday'),
+      '5' => $this->t('Friday'),
+      '6' => $this->t('Saturday'),
+      '0' => $this->t('Sunday'),
+    ];
+
+    $disabled_days = [];
+    foreach ($this->getSetting('disable_days') as $key => $value) {
+      if ($value !== 0) {
+        $disabled_days[] = $options[$value];
+      }
+    }
+
+    $disabled_days = implode(',', $disabled_days);
+
+    $summary[] = t('Disabled days: @disabled_days', ['@disabled_days' => !empty($disabled_days) ? $disabled_days : t('None')]);
 
     return $summary;
   }
@@ -247,7 +285,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#date_time_callbacks' => [],
       '#hour_format' => $this->getSetting('hour_format'),
       '#allow_times' => $this->getSetting('allow_times'),
-
+      '#disable_days' => $this->getSetting('disable_days'),
     ];
 
     $element['end_value'] += [
@@ -259,6 +297,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#date_time_callbacks' => [],
       '#hour_format' => $this->getSetting('hour_format'),
       '#allow_times' => $this->getSetting('allow_times'),
+      '#disable_days' => $this->getSetting('disable_days'),
     ];
 
     // Make single date format from date / time parts.

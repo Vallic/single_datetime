@@ -55,11 +55,24 @@ class SingleDateTime extends FormElement {
     // Get system regional settings.
     $first_day = \Drupal::config('system.date')->get('first_day');
 
+    // Get disabled days.
+    $disabled_days = [];
+
+    // Get active days.
+    foreach ($element['#disable_days'] as $key => $value) {
+      // Important that we check against 0, and not "0".
+      // Sunday is represented as string "0".
+      if ($value !== 0) {
+        $disabled_days[] = intval($value);
+      }
+    }
+
     // Default settings.
     $settings = [
       'hour_format' => $element['#hour_format'],
       'allow_times' => intval($element['#allow_times']),
       'first_day' => $first_day,
+      'disable_days' => $disabled_days,
     ];
 
     // Push field type to JS for changing between date only and time fields.

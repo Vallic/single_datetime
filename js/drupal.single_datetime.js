@@ -60,6 +60,9 @@
           // Get minute granularity
           var allowedTimes = SingleDatetimeAllowTimes(value['allow_times']);
 
+          // Get disabled days.
+          var disabledDays = value['disable_days'];
+
           // Set the hour format.
           var hoursFormat = (hourFormat === '12h') ? 'h:i A' : 'H:i';
 
@@ -78,6 +81,7 @@
             todayButton: true,
             dayOfWeekStart: startDayWeek,
             allowTimes: allowedTimes,
+            disabledWeekDays: disabledDays,
           });
         });
       }
