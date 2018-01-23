@@ -37,59 +37,57 @@
   Drupal.behaviors.single_datetime = {
     attach: function (context, settings) {
 
-      if (typeof drupalSettings.single_datetime !== 'undefined') {
+      $(context).find('input[data-single-date-time]').once('datePicker').each(function () {
+        var input = $(this);
 
-        $.each(drupalSettings.single_datetime, function (index, value) {
+        // Setting the current language for the calendar.
+        var language = drupalSettings.path.currentLanguage;
 
-          // Setting the current language for the calendar.
-          var language = drupalSettings.path.currentLanguage;
+        // Get widget type.
+        var widgetType = input.data('singleDateTime');
 
-          // Get widget type.
-          var widgetType = value['widget_type'];
+        // Get hour format - 12 or 24.
+        var hourFormat = input.data('hourFormat');
 
-          // Get hour format - 12 or 24.
-          var hourFormat = value['hour_format'];
+        // Get first day in week from Drupal.
+        var startDayWeek = input.data('firstDay');
 
-          // Get first day in week from Drupal.
-          var startDayWeek = value['first_day'];
+        // Default values (used for dates only).
+        var dateType = 'Y-m-d';
+        var allowTimepicker = false;
 
-          // Default values (used for dates only).
-          var dateType = 'Y-m-d';
-          var allowTimepicker = false;
+        // Get minute granularity
+        var allowedTimes = SingleDatetimeAllowTimes(input.data('dataAllowTimes'));
 
-          // Get minute granularity
-          var allowedTimes = SingleDatetimeAllowTimes(value['allow_times']);
+        // Get disabled days.
+        var disabledDays = input.data('disableDays');
 
-          // Get disabled days.
-          var disabledDays = value['disable_days'];
+        // Get excluded dates.
+        var excludeDates = input.data('excludeDate');
 
-          // Get excluded dates.
-          var excludeDates = value['exclude_date'];
+        // Set the hour format.
+        var hoursFormat = (hourFormat === '12h') ? 'h:i A' : 'H:i';
 
-          // Set the hour format.
-          var hoursFormat = (hourFormat === '12h') ? 'h:i A' : 'H:i';
+        // If is date & time field.
+        if (widgetType === 'datetime') {
+          dateType = (hourFormat === '12h') ? 'Y-m-d h:i:s A' : 'Y-m-d H:i:s';
+          allowTimepicker = true;
+        }
 
-          // If is date & time field.
-          if (widgetType === 'datetime') {
-            dateType = (hourFormat === '12h') ? 'Y-m-d h:i:s A' : 'Y-m-d H:i:s';
-            allowTimepicker = true;
-          }
-
-          $("#" + index).datetimepicker({
-            lang: language,
-            format: dateType,
-            formatTime: hoursFormat,
-            lazyInit: true,
-            timepicker: allowTimepicker,
-            todayButton: true,
-            dayOfWeekStart: startDayWeek,
-            allowTimes: allowedTimes,
-            disabledWeekDays: disabledDays,
-            disabledDates: excludeDates,
-            formatDate: 'd.m.Y',
-          });
+        $("#" + input.attr('id')).datetimepicker({
+          lang: language,
+          format: dateType,
+          formatTime: hoursFormat,
+          lazyInit: true,
+          timepicker: allowTimepicker,
+          todayButton: true,
+          dayOfWeekStart: startDayWeek,
+          allowTimes: allowedTimes,
+          disabledWeekDays: disabledDays,
+          disabledDates: excludeDates,
+          formatDate: 'd.m.Y',
         });
-      }
+      });
     },
   };
 
