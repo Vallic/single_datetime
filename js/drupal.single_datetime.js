@@ -37,11 +37,11 @@
   Drupal.behaviors.single_datetime = {
     attach: function (context, settings) {
 
+      // Setting the current language for the calendar.
+      var language = drupalSettings.path.currentLanguage;
+
       $(context).find('input[data-single-date-time]').once('datePicker').each(function () {
         var input = $(this);
-
-        // Setting the current language for the calendar.
-        var language = drupalSettings.path.currentLanguage;
 
         // Get widget type.
         var widgetType = input.data('singleDateTime');
