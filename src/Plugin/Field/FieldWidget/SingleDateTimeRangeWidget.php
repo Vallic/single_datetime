@@ -80,7 +80,7 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
         '4' => $this->t('Thursday'),
         '5' => $this->t('Friday'),
         '6' => $this->t('Saturday'),
-        '0' => $this->t('Sunday'),
+        '7' => $this->t('Sunday'),
       ),
       '#default_value' => $this->getSetting('disable_days'),
       '#required' => FALSE,
@@ -111,12 +111,12 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '4' => $this->t('Thursday'),
       '5' => $this->t('Friday'),
       '6' => $this->t('Saturday'),
-      '0' => $this->t('Sunday'),
+      '7' => $this->t('Sunday'),
     ];
 
     $disabled_days = [];
     foreach ($this->getSetting('disable_days') as $key => $value) {
-      if ($value !== 0) {
+      if (!empty($value)) {
         $disabled_days[] = $options[$value];
       }
     }

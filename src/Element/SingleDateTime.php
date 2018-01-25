@@ -61,10 +61,9 @@ class SingleDateTime extends FormElement {
 
     // Get active days.
     foreach ($element['#disable_days'] as $key => $value) {
-      // Important that we check against 0, and not "0".
-      // Sunday is represented as string "0".
-      if ($value !== 0) {
-        $disabled_days[] = intval($value);
+      if (!empty($value)) {
+        // Exception for Sunday - should be 0 (on widget options need to be 7).
+        $disabled_days[] = (int) $value < 7 ? (int) $value : 0;
       }
     }
 
