@@ -57,7 +57,7 @@
         var allowTimepicker = false;
 
         // Get minute granularity
-        var allowedTimes = SingleDatetimeAllowTimes(input.data('dataAllowTimes'));
+        var allowedTimes = SingleDatetimeAllowTimes(input.data('allowTimes'));
 
         // Get disabled days.
         var disabledDays = input.data('disableDays');
