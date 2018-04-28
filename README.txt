@@ -43,6 +43,30 @@ INSTALLATION
  * Install the Single Date Time Picker module as you would normally install a
    contributed Drupal module. Visit https://www.drupal.org/node/1897420 for
    further information.
+ * Install external library from xdan trough composer or manual. Library
+   should be available at yourdrupalsite.com/libraries/datetimepicker
+
+    1. Manual
+       Download https://github.com/xdan/datetimepicker/archive/2.5.20.zip,
+       and extract inside drupal root folder: libraries/datetimepicker
+
+    2. Composer using drupal-libraries-installer
+
+       In your Drupal project add drupal-libraries-folder
+       `composer require balbuf/drupal-libraries-installer`
+
+       Libraries need to be defined as example below
+           `"extra": {
+               "drupal-libraries": {
+                   "datetimepicker": "https://github.com/xdan/datetimepicker/archive/2.5.20.zip"
+               },
+            }`
+
+       Ensure composer packages of type drupal-library are
+       configured to install to the appropriate path.
+
+       Read more at https://github.com/balbuf/drupal-libraries-installer
+
 
 
 CONFIGURATION

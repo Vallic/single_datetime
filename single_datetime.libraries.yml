@@ -1,4 +1,8 @@
 datetimepicker:
+  remote: https://github.com/xdan/datetimepicker
+  license:
+    name: MIT
+    gpl-compatible: false
   js:
     /libraries/datetimepicker/build/jquery.datetimepicker.full.js: {}
     js/drupal.single_datetime.js: {}
