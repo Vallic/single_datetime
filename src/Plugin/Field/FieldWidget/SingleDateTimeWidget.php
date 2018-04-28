@@ -37,6 +37,8 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
       'inline' => FALSE,
       'min_date' => '',
       'max_date' => '',
+      'year_start' => '',
+      'year_end' => '',
     ];
   }
 
@@ -117,6 +119,20 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
       '#default_value' => $this->getSetting('max_date'),
       '#required' => FALSE,
     ];
+    $elements['year_start'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Start year'),
+      '#description' => $this->t('Start value for year'),
+      '#default_value' => $this->getSetting('year_start'),
+      '#required' => FALSE,
+    ];
+    $elements['year_end'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('End year'),
+      '#description' => $this->t('End value for year'),
+      '#default_value' => $this->getSetting('year_end'),
+      '#required' => FALSE,
+    ];
     return $elements;
   }
 
@@ -149,6 +165,8 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     $disabled_days = implode(',', $disabled_days);
     $min_date = $this->getSetting('min_date');
     $max_date = $this->getSetting('max_date');
+    $year_start = $this->getSetting('year_start');
+    $year_end = $this->getSetting('year_end');
 
     $summary[] = t('Disabled days: @disabled_days', ['@disabled_days' => !empty($disabled_days) ? $disabled_days : t('None')]);
 
@@ -159,6 +177,10 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     $summary[] = t('Minimum date/time: @min_date', ['@min_date' => !empty($min_date) ? $min_date : t('None')]);
 
     $summary[] = t('Maximum date/time: @max_date', ['@max_date' => !empty($max_date) ? $max_date : t('None')]);
+
+    $summary[] = t('Start year: @year_start', ['@year_start' => !empty($year_start) ? $year_start : t('None')]);
+
+    $summary[] = t('End year: @year_end', ['@year_end' => !empty($year_end) ? $year_end : t('None')]);
 
     return $summary;
   }
@@ -289,6 +311,8 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     $element['value']['#inline'] = $this->getSetting('inline');
     $element['value']['#min_date'] = $this->getSetting('min_date');
     $element['value']['#max_date'] = $this->getSetting('max_date');
+    $element['value']['#year_start'] = $this->getSetting('year_start');
+    $element['value']['#year_end'] = $this->getSetting('year_end');
     return $element;
   }
 

@@ -38,7 +38,7 @@
     attach: function (context, settings) {
 
       // Setting the current language for the calendar.
-      var language = drupalSettings.path.currentLanguage;
+      var lang = drupalSettings.path.currentLanguage;
 
       $(context).find('input[data-single-date-time]').once('datePicker').each(function () {
         var input = $(this);
@@ -50,20 +50,20 @@
         var hourFormat = input.data('hourFormat');
 
         // Get first day in week from Drupal.
-        var startDayWeek = input.data('firstDay');
+        var dayOfWeekStart = input.data('firstDay');
 
         // Default values (used for dates only).
-        var dateType = 'Y-m-d';
+        var format = 'Y-m-d';
         var allowTimepicker = false;
 
         // Get minute granularity
-        var allowedTimes = SingleDatetimeAllowTimes(input.data('allowTimes'));
+        var allowTimes = SingleDatetimeAllowTimes(input.data('allowTimes'));
 
         // Get disabled days.
-        var disabledDays = input.data('disableDays');
+        var disabledWeekDays = input.data('disableDays');
 
         // Get excluded dates.
-        var excludeDates = input.data('excludeDate');
+        var disabledDates = input.data('excludeDate');
 
         // Get minimum date.
         var minDate = input.data('minDate');
@@ -71,32 +71,40 @@
         // Get maximum date.
         var maxDate = input.data('maxDate');
 
+        // Get start year.
+        var yearStart = input.data('yearStart');
+
+        // Get end year.
+        var yearEnd = input.data('yearEnd');
+
         // Set the hour format.
-        var hoursFormat = (hourFormat === '12h') ? 'h:i A' : 'H:i';
+        var formatTime = (hourFormat === '12h') ? 'h:i A' : 'H:i';
 
         var inline = input.data('inline');
 
         // If is date & time field.
         if (widgetType === 'datetime') {
-          dateType = (hourFormat === '12h') ? 'Y-m-d h:i:s A' : 'Y-m-d H:i:s';
+          format = (hourFormat === '12h') ? 'Y-m-d h:i:s A' : 'Y-m-d H:i:s';
           allowTimepicker = true;
         }
 
-        $("#" + input.attr('id')).datetimepicker({
-          lang: language,
-          format: dateType,
-          formatTime: hoursFormat,
+        $('#' + input.attr('id')).datetimepicker({
+          lang,
+          format,
+          formatTime,
           lazyInit: true,
           timepicker: allowTimepicker,
           todayButton: true,
-          dayOfWeekStart: startDayWeek,
-          allowTimes: allowedTimes,
-          disabledWeekDays: disabledDays,
-          disabledDates: excludeDates,
+          dayOfWeekStart,
+          allowTimes,
+          disabledWeekDays,
+          disabledDates,
           formatDate: 'd.m.Y',
-          inline: inline,
-          minDate: minDate,
-          maxDate: maxDate,
+          inline,
+          minDate,
+          maxDate,
+          yearStart,
+          yearEnd,
         });
       });
     },

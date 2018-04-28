@@ -184,7 +184,7 @@ class SingleDateTimeRangeWidget extends SingleDateTimeWidget implements Containe
         break;
     }
 
-    $element['value'] += [
+    $element_defaults = [
       '#date_date_format' => $date_format,
       '#date_date_element' => $date_type,
       '#date_date_callbacks' => [],
@@ -198,23 +198,13 @@ class SingleDateTimeRangeWidget extends SingleDateTimeWidget implements Containe
       '#inline' => $this->getSetting('inline'),
       '#min_date' => $this->getSetting('min_date'),
       '#max_date' => $this->getSetting('max_date'),
+      '#year_start' => $this->getSetting('year_start'),
+      '#year_end' => $this->getSetting('year_end'),
     ];
 
-    $element['end_value'] += [
-      '#date_date_format' => $date_format,
-      '#date_date_element' => $date_type,
-      '#date_date_callbacks' => [],
-      '#date_time_format' => $time_format,
-      '#date_time_element' => $time_type,
-      '#date_time_callbacks' => [],
-      '#hour_format' => $this->getSetting('hour_format'),
-      '#allow_times' => $this->getSetting('allow_times'),
-      '#disable_days' => $this->getSetting('disable_days'),
-      '#exclude_date' => $this->getSetting('exclude_date'),
-      '#inline' => $this->getSetting('inline'),
-      '#min_date' => $this->getSetting('min_date'),
-      '#max_date' => $this->getSetting('max_date'),
-    ];
+    $element['value'] += $element_defaults;
+
+    $element['end_value'] += $element_defaults;
 
     // Make single date format from date / time parts.
     // Trim spaces in case of date type only.
