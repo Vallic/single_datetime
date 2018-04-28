@@ -91,11 +91,11 @@ class SingleDateTime extends FormElement {
     ];
 
     // Min/Max date settings.
-    if (strlen($element['#min_date'])){
+    if (strlen($element['#min_date'])) {
       $settings['data-min-date'] = $element['#min_date'];
     }
 
-    if (strlen($element['#max_date'])){
+    if (strlen($element['#max_date'])) {
       $settings['data-max-date'] = $element['#max_date'];
     }
 

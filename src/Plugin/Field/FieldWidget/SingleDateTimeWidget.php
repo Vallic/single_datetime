@@ -145,6 +145,8 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     }
 
     $disabled_days = implode(',', $disabled_days);
+    $min_date = $this->getSetting('min_date');
+    $max_date = $this->getSetting('max_date');
 
     $summary[] = t('Disabled days: @disabled_days', ['@disabled_days' => !empty($disabled_days) ? $disabled_days : t('None')]);
 

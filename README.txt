@@ -56,11 +56,11 @@ INSTALLATION
        `composer require balbuf/drupal-libraries-installer`
 
        Libraries need to be defined as example below
-           `"extra": {
-               "drupal-libraries": {
-                   "datetimepicker": "https://github.com/xdan/datetimepicker/archive/2.5.20.zip"
-               },
-            }`
+       `"extra": {
+           "drupal-libraries": {
+               "datetimepicker": "https://github.com/xdan/datetimepicker/archive/2.5.20.zip"
+           },
+        }`
 
        Ensure composer packages of type drupal-library are
        configured to install to the appropriate path.

@@ -2,5 +2,23 @@
 
 /**
  * @file
- * Empty module file.
+ * Main module file single_datetime.
  */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function single_datetime_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.single_datetime':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Date time picker form element for date and date range fields using the xdan jQuery Plugin Date and Time Picker library');
+      $output .= '<h3>' . t('Install jQuery Plugin Date and Time Picker library') . '</h3>';
+      $output .= '<p>' . t('It is possible to place library manual or with composer.') . '</p>';
+      $output .= '<p>' . t('See Readme.txt inside this module or go to project page for detailed instructions') . '</p>';
+      return $output;
+  }
+}
