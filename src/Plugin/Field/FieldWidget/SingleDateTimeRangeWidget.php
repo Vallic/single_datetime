@@ -30,12 +30,12 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-    return array(
+    return [
       'hour_format' => '24h',
       'allow_times' => '15',
       'disable_days' => [],
       'exclude_date' => '',
-    );
+    ];
   }
 
   /**
@@ -43,37 +43,37 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
 
-    $elements = array();
-    $elements['hour_format'] = array(
+    $elements = [];
+    $elements['hour_format'] = [
       '#type' => 'select',
       '#title' => $this->t('Hours Format'),
       '#description' => $this->t('Select the hours format'),
-      '#options' => array(
+      '#options' => [
         '12h' => $this->t('12 Hours'),
         '24h' => $this->t('24 Hours'),
-      ),
+      ],
       '#default_value' => $this->getSetting('hour_format'),
       '#required' => TRUE,
-    );
-    $elements['allow_times'] = array(
+    ];
+    $elements['allow_times'] = [
       '#type' => 'select',
       '#title' => $this->t('Minutes granularity'),
       '#description' => $this->t('Select granularity for minutes in calendar'),
-      '#options' => array(
+      '#options' => [
         '5' => $this->t('5 minutes'),
         '10' => $this->t('10 minutes'),
         '15' => $this->t('15 minutes'),
         '30' => $this->t('30 minutes'),
         '60' => $this->t('60 minutes'),
-      ),
+      ],
       '#default_value' => $this->getSetting('allow_times'),
       '#required' => TRUE,
-    );
-    $elements['disable_days'] = array(
+    ];
+    $elements['disable_days'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Disable specific days in week'),
       '#description' => $this->t('Select days which are disabled in calendar, etc. weekends or just Friday'),
-      '#options' => array(
+      '#options' => [
         '1' => $this->t('Monday'),
         '2' => $this->t('Tuesday'),
         '3' => $this->t('Wednesday'),
@@ -81,17 +81,17 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
         '5' => $this->t('Friday'),
         '6' => $this->t('Saturday'),
         '7' => $this->t('Sunday'),
-      ),
+      ],
       '#default_value' => $this->getSetting('disable_days'),
       '#required' => FALSE,
-    );
-    $elements['exclude_date'] = array(
+    ];
+    $elements['exclude_date'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Disable specific dates from calendar'),
       '#description' => $this->t('Enter days in following format d.m.Y etc. 31.12.2018. Each date in new line. This is used for specific dates, if you want to disable all weekends use settings above, not this field.'),
       '#default_value' => $this->getSetting('exclude_date'),
       '#required' => FALSE,
-    );
+    ];
     return $elements;
   }
 
