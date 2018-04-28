@@ -94,27 +94,27 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
       '#default_value' => $this->getSetting('exclude_date'),
       '#required' => FALSE,
     ];
-    $elements['inline'] = array(
+    $elements['inline'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Render inline'),
       '#description' => $this->t('Select if you want to render the widget inline.'),
       '#default_value' => $this->getSetting('inline'),
       '#required' => FALSE,
-    );
-    $elements['min_date'] = array(
-        '#type' => 'textfield',
-        '#title' => $this->t('Set a limit to the minimum date/time allowed to pick.'),
-        '#description' => $this->t('Examples: \'0\' for now, \'+1970/01/02\' for tomorrow, \'12:00\' for time, \'13:45:34\',formatTime:\'H:i:s\'. <a href="https://xdsoft.net/jqplugins/datetimepicker/">More info</a>'),
-        '#default_value' => $this->getSetting('min_date'),
-        '#required' => FALSE,
-    );
-    $elements['max_date'] = array(
-        '#type' => 'textfield',
-        '#title' => $this->t('Set a limit to the maximum date/time allowed to pick.'),
-        '#description' => $this->t('Examples: \'0\' for now, \'+1970/01/02\' for tomorrow, \'12:00\' for time, \'13:45:34\',formatTime:\'H:i:s\'. <a href="https://xdsoft.net/jqplugins/datetimepicker/">More info</a>. '),
-        '#default_value' => $this->getSetting('max_date'),
-        '#required' => FALSE,
-    );
+    ];
+    $elements['min_date'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Set a limit to the minimum date/time allowed to pick.'),
+      '#description' => $this->t('Examples: \'0\' for now, \'+1970/01/02\' for tomorrow, \'12:00\' for time, \'13:45:34\',formatTime:\'H:i:s\'. <a href="https://xdsoft.net/jqplugins/datetimepicker/">More info</a>'),
+      '#default_value' => $this->getSetting('min_date'),
+      '#required' => FALSE,
+    ];
+    $elements['max_date'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Set a limit to the maximum date/time allowed to pick.'),
+      '#description' => $this->t('Examples: \'0\' for now, \'+1970/01/02\' for tomorrow, \'12:00\' for time, \'13:45:34\',formatTime:\'H:i:s\'. <a href="https://xdsoft.net/jqplugins/datetimepicker/">More info</a>. '),
+      '#default_value' => $this->getSetting('max_date'),
+      '#required' => FALSE,
+    ];
     return $elements;
   }
 
@@ -155,6 +155,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     $summary[] = t('Minimum date/time: @min_date', ['@min_date' => !empty($min_date) ? $min_date : t('None')]);
 
     $summary[] = t('Maximum date/time: @max_date', ['@max_date' => !empty($max_date) ? $max_date : t('None')]);
+
     return $summary;
   }
 
