@@ -1,0 +1,14 @@
+{
+  "name": "drupal/single_datetime",
+  "type": "drupal-module",
+  "description": "Date time picker form element using the xdan jQuery Plugin Date and Time Picker library",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/single_datetime",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/single_datetime",
+    "source": "http://cgit.drupalcode.org/single_datetime"
+  },
+  "require": {}
+}
