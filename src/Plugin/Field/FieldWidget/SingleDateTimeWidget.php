@@ -140,7 +140,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     ];
 
     $disabled_days = [];
-    foreach ($this->getSetting('disable_days') as $key => $value) {
+    foreach ($this->getSetting('disable_days') as $value) {
       if (!empty($value)) {
         $disabled_days[] = $options[$value];
       }
