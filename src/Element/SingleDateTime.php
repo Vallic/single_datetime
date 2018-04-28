@@ -90,6 +90,15 @@ class SingleDateTime extends FormElement {
       'data-inline' => intval($inline),
     ];
 
+    // Min/Max date settings.
+    if (strlen($element['#min_date'])){
+      $settings['data-min-date'] = $element['#min_date'];
+    }
+
+    if (strlen($element['#max_date'])){
+      $settings['data-max-date'] = $element['#max_date'];
+    }
+
     // Push field type to JS for changing between date only and time fields.
     // Difference between date and date range fields.
     if (isset($element['#date_type'])) {

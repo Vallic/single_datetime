@@ -35,6 +35,9 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       'allow_times' => '15',
       'disable_days' => [],
       'exclude_date' => '',
+      'inline' => FALSE,
+      'min_date' => '',
+      'max_date' => '',
     ];
   }
 
@@ -92,6 +95,27 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#default_value' => $this->getSetting('exclude_date'),
       '#required' => FALSE,
     ];
+    $elements['inline'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Render inline'),
+      '#description' => $this->t('Select if you want to render the widget inline.'),
+      '#default_value' => $this->getSetting('inline'),
+      '#required' => FALSE,
+    );
+    $elements['min_date'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Set a limit to the minimum date/time allowed to pick.'),
+      '#description' => $this->t('Examples: \'0\' for now, \'+1970/01/02\' for tomorrow, \'12:00\' for time, \'13:45:34\',formatTime:\'H:i:s\'. <a href="https://xdsoft.net/jqplugins/datetimepicker/">More info</a>'),
+      '#default_value' => $this->getSetting('min_date'),
+      '#required' => FALSE,
+    );
+    $elements['max_date'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Set a limit to the maximum date/time allowed to pick.'),
+      '#description' => $this->t('Examples: \'0\' for now, \'+1970/01/02\' for tomorrow, \'12:00\' for time, \'13:45:34\',formatTime:\'H:i:s\'. <a href="https://xdsoft.net/jqplugins/datetimepicker/">More info</a>. '),
+      '#default_value' => $this->getSetting('max_date'),
+      '#required' => FALSE,
+    );
     return $elements;
   }
 
@@ -127,6 +151,9 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
 
     $summary[] = t('Disabled dates: @disabled_dates', ['@disabled_dates' => !empty($this->getSetting('exclude_date')) ? $this->getSetting('exclude_date') : t('None')]);
 
+    $summary[] = t('Minimum date/time: @min_date', ['@min_date' => !empty($min_date) ? $min_date : t('None')]);
+
+    $summary[] = t('Maximum date/time: @max_date', ['@max_date' => !empty($max_date) ? $max_date : t('None')]);
     return $summary;
   }
 
@@ -297,6 +324,9 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#allow_times' => $this->getSetting('allow_times'),
       '#disable_days' => $this->getSetting('disable_days'),
       '#exclude_date' => $this->getSetting('exclude_date'),
+      '#inline' => $this->getSetting('inline'),
+      '#min_date' => $this->getSetting('min_date'),
+      '#max_date' => $this->getSetting('max_date'),
     ];
 
     $element['end_value'] += [
@@ -310,6 +340,9 @@ class SingleDateTimeRangeWidget extends DateRangeWidgetBase implements Container
       '#allow_times' => $this->getSetting('allow_times'),
       '#disable_days' => $this->getSetting('disable_days'),
       '#exclude_date' => $this->getSetting('exclude_date'),
+      '#inline' => $this->getSetting('inline'),
+      '#min_date' => $this->getSetting('min_date'),
+      '#max_date' => $this->getSetting('max_date'),
     ];
 
     // Make single date format from date / time parts.

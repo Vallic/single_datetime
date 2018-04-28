@@ -65,6 +65,12 @@
         // Get excluded dates.
         var excludeDates = input.data('excludeDate');
 
+        // Get minimum date.
+        var minDate = input.data('minDate');
+
+        // Get maximum date.
+        var maxDate = input.data('maxDate');
+
         // Set the hour format.
         var hoursFormat = (hourFormat === '12h') ? 'h:i A' : 'H:i';
 
@@ -89,6 +95,8 @@
           disabledDates: excludeDates,
           formatDate: 'd.m.Y',
           inline: inline,
+          minDate: minDate,
+          maxDate: maxDate,
         });
       });
     },
