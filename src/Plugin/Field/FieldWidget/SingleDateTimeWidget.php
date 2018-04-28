@@ -104,14 +104,16 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     $elements['min_date'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Set a limit to the minimum date/time allowed to pick.'),
-      '#description' => $this->t('Examples: \'0\' for now, \'+1970/01/02\' for tomorrow, \'12:00\' for time, \'13:45:34\',formatTime:\'H:i:s\'. <a href="https://xdsoft.net/jqplugins/datetimepicker/">More info</a>'),
+      '#description' => $this->t('Examples: \'0\' for now, \'+1970/01/02\' for tomorrow, \'12:00\' for time, \'13:45:34\',formatTime:\'H:i:s\'. <a href=":external">More info</a>',
+        [':external' => 'https://xdsoft.net/jqplugins/datetimepicker/']),
       '#default_value' => $this->getSetting('min_date'),
       '#required' => FALSE,
     ];
     $elements['max_date'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Set a limit to the maximum date/time allowed to pick.'),
-      '#description' => $this->t('Examples: \'0\' for now, \'+1970/01/02\' for tomorrow, \'12:00\' for time, \'13:45:34\',formatTime:\'H:i:s\'. <a href="https://xdsoft.net/jqplugins/datetimepicker/">More info</a>. '),
+      '#description' => $this->t('Examples: \'0\' for now, \'+1970/01/02\' for tomorrow, \'12:00\' for time, \'13:45:34\',formatTime:\'H:i:s\'. <a href=":external">More info</a>.',
+        [':external' => 'https://xdsoft.net/jqplugins/datetimepicker/']),
       '#default_value' => $this->getSetting('max_date'),
       '#required' => FALSE,
     ];
@@ -152,7 +154,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
 
     $summary[] = t('Disabled dates: @disabled_dates', ['@disabled_dates' => !empty($this->getSetting('exclude_date')) ? $this->getSetting('exclude_date') : t('None')]);
 
-    $summary[] = t('Reder widget inline: @render_widget', ['@render_widget' => !empty($this->getSetting('inline')) ? t('TRUE') : t('FALSE')]);
+    $summary[] = t('Display inline widget: @render_widget', ['@render_widget' => !empty($this->getSetting('inline')) ? t('Yes') : t('No')]);
 
     $summary[] = t('Minimum date/time: @min_date', ['@min_date' => !empty($min_date) ? $min_date : t('None')]);
 
