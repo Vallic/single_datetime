@@ -18,7 +18,11 @@ function single_datetime_help($route_name, RouteMatchInterface $route_match) {
       $output .= '<p>' . t('Date time picker form element for date and date range fields using the xdan jQuery Plugin Date and Time Picker library');
       $output .= '<h3>' . t('Install jQuery Plugin Date and Time Picker library') . '</h3>';
       $output .= '<p>' . t('It is possible to place library manual or with composer.') . '</p>';
-      $output .= '<p>' . t('See Readme.txt inside this module or go to project page for detailed instructions') . '</p>';
+      $output .= '<p>' . t('See <a href=":readme">Readme.txt</a> inside this module or go to project page for detailed instructions',
+          [':readme' => 'https://cgit.drupalcode.org/single_datetime/tree/README.txt']) . '</p>';
+      $output .= '<h3>' . t('External resources') . '</h3>';
+      $output .= '<p><a href="https://xdsoft.net/jqplugins/datetimepicker/">DateTimePicker</a></p>';
+      $output .= '<p><a href="https://github.com/xdan/datetimepicker">Github</a></p>';
       return $output;
   }
 }

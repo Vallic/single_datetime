@@ -58,7 +58,8 @@ INSTALLATION
        Libraries need to be defined as example below
        `"extra": {
            "drupal-libraries": {
-               "datetimepicker": "https://github.com/xdan/datetimepicker/archive/2.5.20.zip"
+               "datetimepicker":
+               "https://github.com/xdan/datetimepicker/archive/2.5.20.zip"
            },
         }`
 
