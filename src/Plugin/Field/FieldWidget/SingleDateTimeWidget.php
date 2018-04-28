@@ -34,6 +34,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
       'allow_times' => '15',
       'disable_days' => [],
       'exclude_date' => '',
+      'inline' => FALSE,
     ];
   }
 
@@ -91,6 +92,13 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
       '#default_value' => $this->getSetting('exclude_date'),
       '#required' => FALSE,
     ];
+    $elements['inline'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Render inline'),
+      '#description' => $this->t('Select if you want to render the widget inline.'),
+      '#default_value' => $this->getSetting('inline'),
+      '#required' => FALSE,
+    );
     return $elements;
   }
 
@@ -125,6 +133,8 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     $summary[] = t('Disabled days: @disabled_days', ['@disabled_days' => !empty($disabled_days) ? $disabled_days : t('None')]);
 
     $summary[] = t('Disabled dates: @disabled_dates', ['@disabled_dates' => !empty($this->getSetting('exclude_date')) ? $this->getSetting('exclude_date') : t('None')]);
+
+    $summary[] = t('Reder widget inline: @render_widget', ['@render_widget' => !empty($this->getSetting('inline')) ? t('TRUE') : t('FALSE')]);
 
     return $summary;
   }
@@ -252,6 +262,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     $element['value']['#allow_times'] = $this->getSetting('allow_times');
     $element['value']['#disable_days'] = $this->getSetting('disable_days');
     $element['value']['#exclude_date'] = $this->getSetting('exclude_date');
+    $element['value']['#inline'] = $this->getSetting('inline');
     return $element;
   }
 

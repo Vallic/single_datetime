@@ -75,6 +75,11 @@ class SingleDateTime extends FormElement {
       $exclude_date = explode("\n", $element['#exclude_date']);
     }
 
+    $inline = FALSE;
+    if (!empty($element['#inline'])) {
+      $inline = TRUE;
+    }
+
     // Default settings.
     $settings = [
       'data-hour-format' => $element['#hour_format'],
@@ -82,6 +87,7 @@ class SingleDateTime extends FormElement {
       'data-first-day' => $first_day,
       'data-disable-days' => Json::encode($disabled_days),
       'data-exclude-date' => $exclude_date,
+      'data-inline' => intval($inline),
     ];
 
     // Push field type to JS for changing between date only and time fields.

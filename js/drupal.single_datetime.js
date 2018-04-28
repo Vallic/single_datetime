@@ -68,6 +68,8 @@
         // Set the hour format.
         var hoursFormat = (hourFormat === '12h') ? 'h:i A' : 'H:i';
 
+        var inline = input.data('inline');
+
         // If is date & time field.
         if (widgetType === 'datetime') {
           dateType = (hourFormat === '12h') ? 'Y-m-d h:i:s A' : 'Y-m-d H:i:s';
@@ -86,6 +88,7 @@
           disabledWeekDays: disabledDays,
           disabledDates: excludeDates,
           formatDate: 'd.m.Y',
+          inline: inline,
         });
       });
     },
