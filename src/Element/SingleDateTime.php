@@ -83,6 +83,7 @@ class SingleDateTime extends FormElement {
       'data-disable-days' => Json::encode($disabled_days),
       'data-exclude-date' => $exclude_date,
       'data-inline' => !empty($element['#inline']) ? 1 : 0,
+      'data-datetimepicker-theme' => $element['#datetimepicker-theme'],
     ];
 
     // Year start.

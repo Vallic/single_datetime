@@ -82,6 +82,8 @@
 
         var inline = input.data('inline');
 
+        var theme = input.data('datetimepickerTheme');
+
         // If is date & time field.
         if (widgetType === 'datetime') {
           format = (hourFormat === '12h') ? 'Y-m-d h:i:s A' : 'Y-m-d H:i:s';
@@ -105,6 +107,7 @@
           maxDate,
           yearStart,
           yearEnd,
+          theme,
         });
       });
     },

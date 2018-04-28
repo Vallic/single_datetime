@@ -196,6 +196,7 @@ class SingleDateTimeRangeWidget extends SingleDateTimeWidget implements Containe
       '#disable_days' => $this->getSetting('disable_days'),
       '#exclude_date' => $this->getSetting('exclude_date'),
       '#inline' => $this->getSetting('inline'),
+      '#datetimepicker_theme' => $this->getSetting('datetimepicker_theme'),
       '#min_date' => $this->getSetting('min_date'),
       '#max_date' => $this->getSetting('max_date'),
       '#year_start' => $this->getSetting('year_start'),

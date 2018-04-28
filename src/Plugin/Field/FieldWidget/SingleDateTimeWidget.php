@@ -35,6 +35,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
       'disable_days' => [],
       'exclude_date' => '',
       'inline' => FALSE,
+      'datetimepicker_theme' => 'default',
       'min_date' => '',
       'max_date' => '',
       'year_start' => '',
@@ -101,6 +102,17 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
       '#title' => $this->t('Render inline'),
       '#description' => $this->t('Select if you want to render the widget inline.'),
       '#default_value' => $this->getSetting('inline'),
+      '#required' => FALSE,
+    ];
+    $elements['datetimepicker_theme'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Theme'),
+      '#description' => $this->t('Setting a color scheme. Now only supported default and dark theme'),
+      '#options' => [
+        'default' => $this->t('Default'),
+        'dark' => $this->t('Dark'),
+      ],
+      '#default_value' => $this->getSetting('datetimepicker_theme'),
       '#required' => FALSE,
     ];
     $elements['min_date'] = [
@@ -173,6 +185,8 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     $summary[] = t('Disabled dates: @disabled_dates', ['@disabled_dates' => !empty($this->getSetting('exclude_date')) ? $this->getSetting('exclude_date') : t('None')]);
 
     $summary[] = t('Display inline widget: @render_widget', ['@render_widget' => !empty($this->getSetting('inline')) ? t('Yes') : t('No')]);
+
+    $summary[] = t('Theme: @theme', ['@theme' => ucfirst($this->getSetting('datetimepicker_theme'))]);
 
     $summary[] = t('Minimum date/time: @min_date', ['@min_date' => !empty($min_date) ? $min_date : t('None')]);
 
@@ -309,6 +323,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     $element['value']['#disable_days'] = $this->getSetting('disable_days');
     $element['value']['#exclude_date'] = $this->getSetting('exclude_date');
     $element['value']['#inline'] = $this->getSetting('inline');
+    $element['value']['#datetimepicker-theme'] = $this->getSetting('datetimepicker_theme');
     $element['value']['#min_date'] = $this->getSetting('min_date');
     $element['value']['#max_date'] = $this->getSetting('max_date');
     $element['value']['#year_start'] = $this->getSetting('year_start');
