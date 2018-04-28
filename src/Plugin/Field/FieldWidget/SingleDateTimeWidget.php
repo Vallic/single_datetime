@@ -122,14 +122,14 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     $elements['year_start'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Start year'),
-      '#description' => $this->t('Start value for year'),
+      '#description' => $this->t('Start value for fast Year selector - used only for selector'),
       '#default_value' => $this->getSetting('year_start'),
       '#required' => FALSE,
     ];
     $elements['year_end'] = [
       '#type' => 'textfield',
       '#title' => $this->t('End year'),
-      '#description' => $this->t('End value for year'),
+      '#description' => $this->t('End value for fast Year selector - used only for selector'),
       '#default_value' => $this->getSetting('year_end'),
       '#required' => FALSE,
     ];

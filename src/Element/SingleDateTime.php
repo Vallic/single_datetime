@@ -83,9 +83,17 @@ class SingleDateTime extends FormElement {
       'data-disable-days' => Json::encode($disabled_days),
       'data-exclude-date' => $exclude_date,
       'data-inline' => !empty($element['#inline']) ? 1 : 0,
-      'data-year-start' => $element['#year_start'],
-      'data-year-end' => $element['#year_end'],
     ];
+
+    // Year start.
+    if (!empty($element['#year_start'])) {
+      $settings['data-year-start'] = $element['#year_start'];
+    }
+
+    // Year end.
+    if (!empty($element['#year_end'])) {
+      $settings['data-year-end'] = $element['#year_end'];
+    }
 
     // Min/Max date settings.
     if (strlen($element['#min_date'])) {
