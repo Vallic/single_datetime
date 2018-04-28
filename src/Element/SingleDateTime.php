@@ -26,6 +26,7 @@ class SingleDateTime extends FormElement {
       '#maxlength' => 512,
       '#process' => [[$class, 'processSingleDateTime']],
       '#pre_render' => [[$class, 'preRenderSingleDateTime']],
+      '#size' => 25,
       '#theme_wrappers' => ['form_element'],
       '#theme' => 'input__textfield',
     ];
