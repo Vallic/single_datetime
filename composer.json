@@ -6,6 +6,13 @@
   "license": "GPL-2.0+",
   "homepage": "https://www.drupal.org/project/single_datetime",
   "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Valentino Medimorec (valic)",
+      "homepage": "https://www.drupal.org/u/valic",
+      "role": "Maintainer"
+    }
+  ],
   "support": {
     "issues": "https://www.drupal.org/project/issues/single_datetime",
     "source": "http://cgit.drupalcode.org/single_datetime"
