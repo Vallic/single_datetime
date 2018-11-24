@@ -78,7 +78,7 @@ class SingleDateTime extends FormElement {
     // Default settings.
     $settings = [
       'data-hour-format' => $element['#hour_format'],
-      'data-allow-times' => intval($element['#allow_times']),
+      'data-allow-times' => (int) $element['#allow_times'],
       'data-first-day' => $first_day,
       'data-disable-days' => Json::encode($disabled_days),
       'data-exclude-date' => $exclude_date,
@@ -119,6 +119,9 @@ class SingleDateTime extends FormElement {
 
     // Append our attributes to element.
     $element['#attributes'] += $settings;
+
+    // Disable Chrome autofill on widget.
+    $element['#attributes']['autocomplete'] = 'off';
 
     // Attach library.
     $complete_form['#attached']['library'][] = 'single_datetime/datetimepicker';
