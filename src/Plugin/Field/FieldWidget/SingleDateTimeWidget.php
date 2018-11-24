@@ -323,7 +323,7 @@ class SingleDateTimeWidget extends DateTimeWidgetBase implements ContainerFactor
     $element['value']['#disable_days'] = $this->getSetting('disable_days');
     $element['value']['#exclude_date'] = $this->getSetting('exclude_date');
     $element['value']['#inline'] = $this->getSetting('inline');
-    $element['value']['#datetimepicker-theme'] = $this->getSetting('datetimepicker_theme');
+    $element['value']['#datetimepicker_theme'] = $this->getSetting('datetimepicker_theme');
     $element['value']['#min_date'] = $this->getSetting('min_date');
     $element['value']['#max_date'] = $this->getSetting('max_date');
     $element['value']['#year_start'] = $this->getSetting('year_start');
