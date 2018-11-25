@@ -134,7 +134,7 @@ class SingleDateTime extends FormElement {
     $element['#attributes']['autocomplete'] = 'off';
 
     // Attach library.
-    $complete_form['#attached']['library'][] = 'single_datetime/datetimepicker';
+    $element['#attached']['library'][] = 'single_datetime/datetimepicker';
 
     return $element;
   }
