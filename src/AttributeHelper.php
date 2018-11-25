@@ -12,7 +12,7 @@ use Drupal\Component\Serialization\Json;
 class AttributeHelper {
 
   /**
-   * Attributes for creating default widget.
+   * Attributes for textfield (or any non single_datetime field types).
    *
    * @return array
    *   Return attributes.
@@ -32,7 +32,7 @@ class AttributeHelper {
   }
 
   /**
-   * Date only widget.
+   * Date only widget - for non single_datetime field types.
    *
    * @return array
    *   Return attributes.
@@ -42,7 +42,7 @@ class AttributeHelper {
   }
 
   /**
-   * List of all attributes.
+   * List of all attributes - (for non single_datetime field types).
    *
    * @return array
    *   Return all attributes.
@@ -63,6 +63,31 @@ class AttributeHelper {
       'data-max-date' => date('Y-m-d  H:i:s'),
       'data-year-start' => '1970',
       'data-year-end' => date('Y'),
+    ];
+  }
+
+  /**
+   * All attributes for single_datetime field type.
+   *
+   * @return array
+   *   Return formatted array.
+   */
+  public static function allElementAttributes() {
+    return [
+      '#hour_format' => 24,
+      '#first_day' => \Drupal::config('system.date')->get('first_day'),
+      '#disable_days' => [],
+      '#allow_times' => 60,
+      '#allowed_hours' => Json::encode(range(0, 23)),
+      '#inline' => '0',
+      '#mask' => FALSE,
+      '#datetimepicker_theme' => 'default',
+      '#single_date_time' => 'datetime',
+      '#exclude_date' => '',
+      '#min_date' => '',
+      '#max_date' => '',
+      '#year_start' => '1970',
+      '#year_end' => date('Y'),
     ];
   }
 
