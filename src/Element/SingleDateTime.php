@@ -133,6 +133,9 @@ class SingleDateTime extends FormElement {
     // Disable Chrome autofill on widget.
     $element['#attributes']['autocomplete'] = 'off';
 
+    // Prevent keyboard on mobile devices.
+    $element['#attributes']['onfocus'] = 'blur();';
+
     // Attach library.
     $element['#attached']['library'][] = 'single_datetime/datetimepicker';
 
