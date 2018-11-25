@@ -106,6 +106,8 @@
 
         var inline = input.data("inline");
 
+        var mask = Boolean(input.data("mask"));
+
         var theme = input.data("datetimepickerTheme");
 
         // Default empty array. Only calculate later if field type
@@ -133,6 +135,7 @@
           disabledDates: disabledDates,
           formatDate: "d.m.Y",
           inline: inline,
+          mask: mask,
           minDate: minDate,
           maxDate: maxDate,
           yearStart: yearStart,

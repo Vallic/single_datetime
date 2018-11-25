@@ -101,6 +101,8 @@
 
           const inline = input.data("inline");
 
+          const mask = Boolean(input.data("mask"));
+
           const theme = input.data("datetimepickerTheme");
 
           // Default empty array. Only calculate later if field type
@@ -131,6 +133,7 @@
             disabledDates,
             formatDate: "d.m.Y",
             inline,
+            mask,
             minDate,
             maxDate,
             yearStart,

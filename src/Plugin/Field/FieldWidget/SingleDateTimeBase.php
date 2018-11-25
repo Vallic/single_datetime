@@ -58,6 +58,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
       'disable_days' => [],
       'exclude_date' => '',
       'inline' => FALSE,
+      'mask' => FALSE,
       'datetimepicker_theme' => 'default',
       'min_date' => '',
       'max_date' => '',
@@ -132,6 +133,13 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
       '#title' => $this->t('Render inline'),
       '#description' => $this->t('Select if you want to render the widget inline.'),
       '#default_value' => $this->getSetting('inline'),
+      '#required' => FALSE,
+    ];
+    $elements['mask'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Use mask'),
+      '#description' => $this->t('Use mask for input. Example __.__.____ '),
+      '#default_value' => $this->getSetting('mask'),
       '#required' => FALSE,
     ];
     $elements['datetimepicker_theme'] = [
@@ -216,6 +224,8 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
     $summary[] = t('Disabled dates: @disabled_dates', ['@disabled_dates' => !empty($this->getSetting('exclude_date')) ? $this->getSetting('exclude_date') : t('None')]);
 
     $summary[] = t('Display inline widget: @render_widget', ['@render_widget' => !empty($this->getSetting('inline')) ? t('Yes') : t('No')]);
+
+    $summary[] = t('Use mask: @mask', ['@mask' => !empty($this->getSetting('mask')) ? t('Yes') : t('No')]);
 
     $summary[] = t('Theme: @theme', ['@theme' => ucfirst($this->getSetting('datetimepicker_theme'))]);
 
@@ -354,6 +364,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
       '#disable_days' => $this->getSetting('disable_days'),
       '#exclude_date' => $this->getSetting('exclude_date'),
       '#inline' => $this->getSetting('inline'),
+      '#mask' => $this->getSetting('mask'),
       '#datetimepicker_theme' => $this->getSetting('datetimepicker_theme'),
       '#min_date' => $this->getSetting('min_date'),
       '#max_date' => $this->getSetting('max_date'),
