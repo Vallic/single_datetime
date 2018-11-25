@@ -110,7 +110,6 @@
           }
 
           $(`#${input.attr("id")}`).datetimepicker({
-            lang,
             format,
             formatTime,
             lazyInit: true,
@@ -128,6 +127,9 @@
             yearEnd,
             theme
           });
+          // Explicitly set locale. Does not work with passed variable
+          // in setttings above.
+          $.datetimepicker.setLocale(lang);
         });
     }
   };
