@@ -5,18 +5,21 @@
 
 (($, Drupal, drupalSettings) => {
   /**
-   * Function to format date.
+   * Function to return list of hours / minutes formatted as array.
    *
+   * @param {Array} $hours
+   *   List for allowed hours as array.
    * @param {string} $type
    *   Granularity for allowed intervals in minutes.
-   * @return {array}
+   *
+   * @return {Array}
    *   Return minutes formatted in array by allowed intervals.
    */
-  function SingleDatetimeAllowTimes($type) {
+  function SingleDatetimeAllowTimes($hours, $type) {
     const times = [];
 
     // Build array.
-    for (let i = 0; i < 24; i++) {
+    $hours.forEach(i => {
       // Formatting hours.
       if (i < 10) {
         i = `0${i}`;
@@ -41,7 +44,7 @@
           times.push(`${i}:${minutes}`);
         }
       }
-    }
+    });
 
     return times;
   }
@@ -75,9 +78,6 @@
           let format = "Y-m-d";
           let allowTimepicker = false;
 
-          // Get minute granularity
-          const allowTimes = SingleDatetimeAllowTimes(input.data("allowTimes"));
-
           // Get disabled days.
           const disabledWeekDays = input.data("disableDays");
 
@@ -103,10 +103,20 @@
 
           const theme = input.data("datetimepickerTheme");
 
+          // Default empty array. Only calculate later if field type
+          // includes times.
+          let allowTimes = [];
+
           // If is date & time field.
           if (widgetType === "datetime") {
             format = hourFormat === "12h" ? "Y-m-d h:i:s A" : "Y-m-d H:i:s";
             allowTimepicker = true;
+
+            // Get minute granularity, and allowed hours.
+            allowTimes = SingleDatetimeAllowTimes(
+              input.data("allowedHours"),
+              input.data("allowTimes")
+            );
           }
 
           $(`#${input.attr("id")}`).datetimepicker({

@@ -54,6 +54,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
     return [
       'hour_format' => '24h',
       'allow_times' => '15',
+      'allowed_hours' => '',
       'disable_days' => [],
       'exclude_date' => '',
       'inline' => FALSE,
@@ -95,6 +96,13 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
       ],
       '#default_value' => $this->getSetting('allow_times'),
       '#required' => TRUE,
+    ];
+    $elements['allowed_hours'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Allowed hours'),
+      '#description' => $this->t('Specify allowed hours on time picker. Leave empty for no restrictions. Enter hours in following format of number, etc: 8,9,10,11,12,13,14,15,16,17. Separate by comma. This is used in combination with minutes granularity.'),
+      '#default_value' => $this->getSetting('allowed_hours'),
+      '#required' => FALSE,
     ];
     $elements['disable_days'] = [
       '#type' => 'checkboxes',
@@ -178,6 +186,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
 
     $summary[] = t('Hours Format: @hour_format', ['@hour_format' => $this->getSetting('hour_format')]);
     $summary[] = t('Minutes Granularity: @allow_times', ['@allow_times' => $this->getSetting('allow_times')]);
+    $summary[] = t('Allowed hours: @allowed_hours', ['@allowed_hours' => !empty($this->getSetting('allowed_hours')) ? $this->getSetting('allowed_hours') : t('All hours are allowed')]);
 
     $options = [
       '1' => $this->t('Monday'),
@@ -341,6 +350,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
     return [
       '#hour_format' => $this->getSetting('hour_format'),
       '#allow_times' => $this->getSetting('allow_times'),
+      '#allowed_hours' => $this->getSetting('allowed_hours'),
       '#disable_days' => $this->getSetting('disable_days'),
       '#exclude_date' => $this->getSetting('exclude_date'),
       '#inline' => $this->getSetting('inline'),

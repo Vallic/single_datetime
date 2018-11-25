@@ -75,10 +75,19 @@ class SingleDateTime extends FormElement {
       $exclude_date = explode("\n", $element['#exclude_date']);
     }
 
+    // Default, build array for all hours.
+    $allowed_hours = range(0, 23);
+
+    // If we have specifics, use that list.
+    if (!empty($element['#allowed_hours'])) {
+      $allowed_hours = explode(',', $element['#allowed_hours']);
+    }
+
     // Default settings.
     $settings = [
       'data-hour-format' => $element['#hour_format'],
       'data-allow-times' => (int) $element['#allow_times'],
+      'data-allowed-hours' => Json::encode($allowed_hours),
       'data-first-day' => $first_day,
       'data-disable-days' => Json::encode($disabled_days),
       'data-exclude-date' => $exclude_date,
