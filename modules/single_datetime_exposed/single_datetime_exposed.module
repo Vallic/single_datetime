@@ -12,7 +12,7 @@ use Drupal\single_datetime\AttributeHelper;
 /**
  * Implements hook_help().
  */
-function single_datetime_help($route_name, RouteMatchInterface $route_match) {
+function single_datetime_exposed_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.single_datetime_exposed':
       $output = '';
