@@ -57,7 +57,7 @@
   Drupal.behaviors.single_datetime = {
     attach(context) {
       // Setting the current language for the calendar.
-      const lang = drupalSettings.path.currentLanguage;
+      val lang = drupalSettings.path.currentLanguage;
 
       $(context)
         .find("input[data-single-date-time]")
@@ -140,6 +140,11 @@
             yearEnd,
             theme
           });
+
+          if (lang === 'pt-br') {
+              lang = 'pt-BR';
+          }
+
           // Explicitly set locale. Does not work with passed variable
           // in setttings above.
           $.datetimepicker.setLocale(lang);
