@@ -146,7 +146,6 @@
         if (lang === 'pt-br') {
           lang = 'pt-BR';
         }
-
         // Explicitly set locale. Does not work with passed variable
         // in setttings above.
         $.datetimepicker.setLocale(lang);
