@@ -35,6 +35,7 @@ class SingleDateTimeWidget extends SingleDateTimeBase {
       '#default_value' => NULL,
       '#date_type' =>  $date_type,
       '#required' => $element['#required'],
+      '#description' => $element['#description'],
     ];
 
     // Identify the type of date and time elements to use.
