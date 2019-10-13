@@ -11,7 +11,7 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\datetime\Plugin\Field\FieldWidget\DateTimeWidgetBase;
-
+use Drupal\Component\Datetime;
 /**
  * Base class for SingleDateTime widget types.
  */
@@ -259,7 +259,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
           case DateRangeItem::DATETIME_TYPE_DATE:
             // If this is a date-only field, set it to the default time so the
             // timezone conversion can be reversed.
-            datetime_date_default_time($start_date);
+            setDefaultDateTime($start_date);
             $format = DATETIME_DATE_STORAGE_FORMAT;
             break;
 
@@ -293,7 +293,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
           case DateRangeItem::DATETIME_TYPE_DATE:
             // If this is a date-only field, set it to the default time so the
             // timezone conversion can be reversed.
-            datetime_date_default_time($end_date);
+            setDefaultDateTime($end_date);
             $format = DATETIME_DATE_STORAGE_FORMAT;
             break;
 
@@ -342,7 +342,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
     if ($this->getFieldSetting('datetime_type') === DateTimeItem::DATETIME_TYPE_DATE) {
       // A date without time will pick up the current time, use the default
       // time.
-      datetime_date_default_time($date);
+      setDefaultDateTime($date);
     }
     $date->setTimezone(new \DateTimeZone($timezone));
 
