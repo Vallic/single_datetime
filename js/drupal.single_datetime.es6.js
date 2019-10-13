@@ -57,7 +57,7 @@
   Drupal.behaviors.single_datetime = {
     attach(context) {
       // Setting the current language for the calendar.
-      val lang = drupalSettings.path.currentLanguage;
+      let lang = drupalSettings.path.currentLanguage;
 
       $(context)
         .find("input[data-single-date-time]")
