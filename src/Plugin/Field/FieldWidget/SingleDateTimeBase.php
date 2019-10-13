@@ -8,6 +8,7 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\datetime\Plugin\Field\FieldWidget\DateTimeWidgetBase;
@@ -269,7 +270,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
             // If this is a date-only field, set it to the default time so the
             // timezone conversion can be reversed.
             $start_date->setDefaultDateTime();
-            $format = DATETIME_DATE_STORAGE_FORMAT;
+            $format = DateTimeItemInterface::DATE_STORAGE_FORMAT;
             break;
 
           // All day.
@@ -280,12 +281,12 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
             // we need to explicitly set the timezone.
             $start_date->setTimeZone(timezone_open(drupal_get_user_timezone()));
             $start_date->setTime(0, 0, 0);
-            $format = DATETIME_DATETIME_STORAGE_FORMAT;
+            $format = DateTimeItemInterface::DATETIME_STORAGE_FORMAT;
             break;
 
           // Date and time.
           default:
-            $format = DATETIME_DATETIME_STORAGE_FORMAT;
+            $format = DateTimeItemInterface::DATETIME_STORAGE_FORMAT;
             break;
         }
         // Adjust the date for storage.
@@ -303,7 +304,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
             // If this is a date-only field, set it to the default time so the
             // timezone conversion can be reversed.
             $end_date->setDefaultDateTime();
-            $format = DATETIME_DATE_STORAGE_FORMAT;
+            $format = DateTimeItemInterface::DATE_STORAGE_FORMAT;
             break;
 
           case DateRangeItem::DATETIME_TYPE_ALLDAY:
@@ -313,11 +314,11 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
             // we need to explicitly set the timezone.
             $end_date->setTimeZone(timezone_open(drupal_get_user_timezone()));
             $end_date->setTime(23, 59, 59);
-            $format = DATETIME_DATETIME_STORAGE_FORMAT;
+            $format = DateTimeItemInterface::DATETIME_STORAGE_FORMAT;
             break;
 
           default:
-            $format = DATETIME_DATETIME_STORAGE_FORMAT;
+            $format = DateTimeItemInterface::DATETIME_STORAGE_FORMAT;
             break;
         }
         // Adjust the date for storage.
