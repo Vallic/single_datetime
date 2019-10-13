@@ -4,4 +4,4 @@ description: Date time picker form attached to date exposed views filters.
 core: '8.x'
 
 dependencies:
-  - single_datetime
+  - single_datetime:single_datetime
