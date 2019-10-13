@@ -45,6 +45,7 @@ class SingleDateTime extends FormElement {
    *   The $element with prepared variables ready for input.html.twig.
    */
   public static function preRenderSingleDateTime(array $element) {
+    $element['#attributes']['type'] = 'text';
     Element::setAttributes($element, ['id', 'name', 'value', 'size']);
     static::setAttributes($element, ['form-date']);
     return $element;
