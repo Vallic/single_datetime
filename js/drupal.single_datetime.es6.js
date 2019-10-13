@@ -99,6 +99,8 @@
           // Set the hour format.
           const formatTime = hourFormat === "12h" ? "h:i A" : "H:i";
 
+          const customFormat = input.data('customFormat');
+
           const inline = input.data("inline");
 
           const mask = Boolean(input.data("mask"));
@@ -121,6 +123,9 @@
               input.data("allowedHours"),
               input.data("allowTimes")
             );
+          }
+          if (typeof customFormat !== 'undefined') {
+            format = customFormat;
           }
 
           $(`#${input.attr("id")}`).datetimepicker({
@@ -157,7 +162,7 @@
           }
 
           // Explicitly set locale. Does not work with passed variable
-          // in setttings above.
+          // in settings above.
           $.datetimepicker.setLocale(lang);
         });
     }

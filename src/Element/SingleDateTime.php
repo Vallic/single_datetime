@@ -94,6 +94,7 @@ class SingleDateTime extends FormElement {
       'data-inline' => !empty($element['#inline']) ? 1 : 0,
       'data-mask' => !empty($element['#mask']) ? 1 : 0,
       'data-datetimepicker-theme' => $element['#datetimepicker_theme'],
+      'data-custom-format' => $element['#custom_format'] ?? NULL,
     ];
 
     // Year start.
