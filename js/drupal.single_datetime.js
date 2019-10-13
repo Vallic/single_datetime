@@ -110,6 +110,8 @@
 
         var theme = input.data("datetimepickerTheme");
 
+        var allowBlank = Boolean(input.data("allowBlank"));
+
         // Default empty array. Only calculate later if field type
         // includes times.
         var allowTimes = [];
@@ -140,7 +142,8 @@
           maxDate: maxDate,
           yearStart: yearStart,
           yearEnd: yearEnd,
-          theme: theme
+          theme: theme,
+          allowBlank: allowBlank
         });
 
         if (lang === 'pt-br') {

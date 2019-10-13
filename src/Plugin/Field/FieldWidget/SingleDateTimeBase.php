@@ -64,6 +64,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
       'max_date' => '',
       'year_start' => '',
       'year_end' => '',
+      'allow_blank' => FALSE,
     ];
   }
 
@@ -183,6 +184,13 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
       '#default_value' => $this->getSetting('year_end'),
       '#required' => FALSE,
     ];
+    $elements['allow_blank'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Allow blank'),
+      '#description' => $this->t('Allow deleting the value to unset a date.'),
+      '#default_value' => $this->getSetting('allow_blank'),
+      '#required' => FALSE,
+    ];
     return $elements;
   }
 
@@ -236,6 +244,8 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
     $summary[] = t('Start year: @year_start', ['@year_start' => !empty($year_start) ? $year_start : t('None')]);
 
     $summary[] = t('End year: @year_end', ['@year_end' => !empty($year_end) ? $year_end : t('None')]);
+
+    $summary[] = t('Allow blank: @allow_blank', ['@allow_blank' => !empty($this->getSetting('allow_blank')) ? t('Yes') : t('No')]);
 
     return $summary;
   }
@@ -370,6 +380,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
       '#max_date' => $this->getSetting('max_date'),
       '#year_start' => $this->getSetting('year_start'),
       '#year_end' => $this->getSetting('year_end'),
+      '#allow_blank' => $this->getSetting('allow_blank'),
     ];
   }
 

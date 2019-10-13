@@ -115,6 +115,11 @@ class SingleDateTime extends FormElement {
       $settings['data-max-date'] = $element['#max_date'];
     }
 
+    // Allow blank.
+    if (!empty($element['#allow_blank'])) {
+      $settings['data-allow-blank'] = $element['#allow_blank'];
+    }
+
     // Push field type to JS for changing between date only and time fields.
     // Difference between date and date range fields.
     if (isset($element['#date_type'])) {
@@ -133,8 +138,11 @@ class SingleDateTime extends FormElement {
     // Disable Chrome autofill on widget.
     $element['#attributes']['autocomplete'] = 'off';
 
-    // Prevent keyboard on mobile devices.
-    $element['#attributes']['onfocus'] = 'blur();';
+    // Prevent keyboard on mobile devices, but only if allowBlank is false
+    // otherwise a user won't be able to delete a date.
+    if (!$element['#allow_blank']) {
+      $element['#attributes']['onfocus'] = 'blur();';
+    }
 
     // Attach library.
     $element['#attached']['library'][] = 'single_datetime/datetimepicker';
