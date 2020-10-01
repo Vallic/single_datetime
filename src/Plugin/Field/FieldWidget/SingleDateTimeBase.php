@@ -43,7 +43,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
       $configuration['field_definition'],
       $configuration['settings'],
       $configuration['third_party_settings'],
-      $container->get('entity.manager')->getStorage('date_format')
+      $container->get('entity_type.manager')->getStorage('date_format')
     );
   }
 
