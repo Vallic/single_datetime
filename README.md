@@ -120,7 +120,7 @@ Using AttributeHelper you can create default widget:
 $form['purchase_date'] = [
  '#title' => 'Purchase date',
  '#type' => 'single_date_time',
- '#date_timezone' => drupal_get_user_timezone(),
+ '#date_timezone' => date_default_timezone_get(),
  '#default_value' => NULL,
  '#date_type' =>  'datetime',
  '#required' => TRUE,
