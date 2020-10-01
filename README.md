@@ -35,7 +35,7 @@ REQUIREMENTS
 ------------
 
 This module requires the following outside of Drupal core:
- 
+
  * Plugin Date and Time Picker library - https://github.com/xdan/datetimepicker
 
 
@@ -52,10 +52,8 @@ INSTALLATION
        Download https://github.com/xdan/datetimepicker/archive/2.5.20.zip,
        and extract inside drupal root folder: libraries/datetimepicker
 
-    2. Composer using drupal-libraries-installer
-
-       In your Drupal project add drupal-libraries-folder
-       `composer require balbuf/drupal-libraries-installer`
+    2. Composer using zodiacmedia/drupal-libraries-installer.
+       This PHP packages should be automatically installed with this module.
 
        Libraries need to be defined as example below
        `"extra": {
@@ -68,15 +66,16 @@ INSTALLATION
        Ensure composer packages of type drupal-library are
        configured to install to the appropriate path.
 
-       Read more at https://github.com/balbuf/drupal-libraries-installer
+       Read more at zodiacmedia/drupal-libraries-installer
 
-
+    3. Using packagist for JS libraries
+       https://asset-packagist.org/
 
 CONFIGURATION
 -------------
 
     1. Navigate to Administration > Extend and enable the module.
-    2. Navigate to Administration > Structure > Content types > [Content type 
+    2. Navigate to Administration > Structure > Content types > [Content type
        with date field] > Manage form display.
     3. Select the date field to edit and choose "Single Date Time Picker" from
        Widget drop down.
@@ -103,7 +102,6 @@ based on this submodule.
 
 FORM API USAGE
 -------------
-
 You can use SingleDateTime in other parts of the Drupal FORM API with minor adjustments.
 If you are using non single_datetime elements, as textfield field type, you need
 to attach proper attributes on the field, and attach JS library (see examples below).
@@ -113,12 +111,12 @@ Second choice is that you can create custom field of field type single_datetime 
 Also exist helper `\Drupal\single_datetime\AttributeHelper` with some default
 attributes options and examples. See examples below.
 
- 
+
 
 **Custom single_datetime field**
 Using AttributeHelper you can create default widget:
 
-```    
+```
 $form['purchase_date'] = [
  '#title' => 'Purchase date',
  '#type' => 'single_date_time',

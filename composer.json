@@ -17,5 +17,11 @@
     "issues": "https://www.drupal.org/project/issues/single_datetime",
     "source": "http://cgit.drupalcode.org/single_datetime"
   },
-  "require": {}
+    "require": {
+        "zodiacmedia/drupal-libraries-installer": "~v1.0"
+    }
+    ,
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
+    }
 }

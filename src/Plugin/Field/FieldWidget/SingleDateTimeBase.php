@@ -6,16 +6,16 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\datetime\Plugin\Field\FieldWidget\DateTimeWidgetBase;
+
 /**
  * Base class for SingleDateTime widget types.
  */
-abstract class SingleDateTimeBase extends DateTimeWidgetBase implements ContainerFactoryPluginInterface {
+abstract class SingleDateTimeBase extends DateTimeWidgetBase {
 
   /**
    * The date format storage.
@@ -29,7 +29,6 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase implements Containe
    */
   public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, array $third_party_settings, EntityStorageInterface $date_storage) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $third_party_settings);
-
     $this->dateStorage = $date_storage;
   }
 
