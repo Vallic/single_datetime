@@ -34,7 +34,7 @@ class SingleDateTimeWidget extends SingleDateTimeBase {
       '#type' => 'single_date_time',
       '#date_timezone' => date_default_timezone_get(),
       '#default_value' => NULL,
-      '#date_type' =>  $date_type,
+      '#date_type' => $date_type,
       '#required' => $element['#required'],
       '#description' => $element['#description'],
     ];
@@ -63,7 +63,7 @@ class SingleDateTimeWidget extends SingleDateTimeBase {
     if ($items[$delta]->date) {
       $date = $items[$delta]->date;
       // Manual define form for input field.
-      $element['value']['#default_value'] =  $this->formatDefaultValue($date, $element['value']['#date_timezone'], $format);
+      $element['value']['#default_value'] = $this->formatDefaultValue($date, $element['value']['#date_timezone'], $format);
     }
 
     return $element;

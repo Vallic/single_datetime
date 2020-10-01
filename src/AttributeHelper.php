@@ -5,7 +5,7 @@ namespace Drupal\single_datetime;
 use Drupal\Component\Serialization\Json;
 
 /**
- * Class AttributeHelper
+ * Class AttributeHelper.
  *
  * @package Drupal\single_datetime
  */

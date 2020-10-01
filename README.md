@@ -97,16 +97,18 @@ If you enable it, all exposed filters of types `date` and `search_api_date` will
 automatically use date time picker on exposed filters.
 
 It works with all operators, and none configuration is needed.
-If you need customized configuration, suggesting that you create your implementation
-based on this submodule.
+If you need customized configuration, suggesting that you create your
+implementation based on this submodule.
 
 FORM API USAGE
 -------------
-You can use SingleDateTime in other parts of the Drupal FORM API with minor adjustments.
-If you are using non single_datetime elements, as textfield field type, you need
-to attach proper attributes on the field, and attach JS library (see examples below).
+You can use SingleDateTime in other parts of the Drupal FORM API with minor
+adjustments. If you are using non single_datetime elements, as textfield field
+type, you need to attach proper attributes on the field, and attach JS library
+(see examples below).
 
-Second choice is that you can create custom field of field type single_datetime directly.
+Second choice is that you can create custom field of field type
+single_datetime directly.
 
 Also exist helper `\Drupal\single_datetime\AttributeHelper` with some default
 attributes options and examples. See examples below.

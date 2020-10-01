@@ -138,7 +138,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase {
     $elements['mask'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Use mask'),
-      '#description' => $this->t('Use mask for input. Example __.__.____ '),
+      '#description' => $this->t('Use mask for input. Example __.__.____'),
       '#default_value' => $this->getSetting('mask'),
       '#required' => FALSE,
     ];
