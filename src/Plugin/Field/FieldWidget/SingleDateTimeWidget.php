@@ -5,6 +5,7 @@ namespace Drupal\single_datetime\Plugin\Field\FieldWidget;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
  * Plugin implementation of the SingleDateTimeWidget widget.
@@ -31,7 +32,7 @@ class SingleDateTimeWidget extends SingleDateTimeBase {
     $element['value'] = [
       '#title' => $element['#title'],
       '#type' => 'single_date_time',
-      '#date_timezone' => drupal_get_user_timezone(),
+      '#date_timezone' => date_default_timezone_get(),
       '#default_value' => NULL,
       '#date_type' =>  $date_type,
       '#required' => $element['#required'],
@@ -43,10 +44,10 @@ class SingleDateTimeWidget extends SingleDateTimeBase {
       case DateTimeItem::DATETIME_TYPE_DATE:
         // A date-only field should have no timezone conversion performed, so
         // use the same timezone as for storage.
-        $element['value']['#date_timezone'] = DATETIME_STORAGE_TIMEZONE;
+        $element['value']['#date_timezone'] = DateTimeItemInterface::STORAGE_TIMEZONE;
 
         // If field is date only, use default time format.
-        $format = DATETIME_DATE_STORAGE_FORMAT;
+        $format = DateTimeItemInterface::DATE_STORAGE_FORMAT;
         break;
 
       default:

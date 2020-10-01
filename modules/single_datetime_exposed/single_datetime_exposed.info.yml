@@ -2,6 +2,7 @@ name: Date Time Exposed Views Filters
 type: module
 description: Date time picker form attached to date exposed views filters.
 core: '8.x'
+core_version_requirement: ^8 || ^9
 
 dependencies:
   - single_datetime:single_datetime

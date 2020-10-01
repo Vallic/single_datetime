@@ -37,7 +37,7 @@ class SingleDateTimeRangeWidget extends SingleDateTimeBase {
     $element['value'] = [
       '#title' => $this->t('Start date'),
       '#type' => 'single_date_time',
-      '#date_timezone' => drupal_get_user_timezone(),
+      '#date_timezone' => date_default_timezone_get(),
       '#default_value' => NULL,
       '#required' => $element['#required'],
     ];
@@ -46,7 +46,7 @@ class SingleDateTimeRangeWidget extends SingleDateTimeBase {
     $element['end_value'] = [
       '#title' => $element['#required'] ? $this->t('End date') : $this->t('End date (optional)'),
       '#type' => 'single_date_time',
-      '#date_timezone' => drupal_get_user_timezone(),
+      '#date_timezone' => date_default_timezone_get(),
       '#default_value' => NULL,
       '#required' => $element['#required'],
     ];
