@@ -21,6 +21,7 @@ class AttributeHelper {
     return [
       'data-hour-format' => 24,
       'data-first-day' => \Drupal::config('system.date')->get('first_day'),
+      'data-allow-seconds' => FALSE,
       'data-disable-days' => [],
       'data-allow-times' => 60,
       'data-allowed-hours' => Json::encode(range(0, 23)),
@@ -52,6 +53,7 @@ class AttributeHelper {
       'data-hour-format' => 24,
       'data-first-day' => \Drupal::config('system.date')->get('first_day'),
       'data-disable-days' => [],
+      'data-allow-seconds' => FALSE,
       'data-allow-times' => 60,
       'data-allowed-hours' => Json::encode(range(0, 23)),
       'data-inline' => '0',
@@ -77,6 +79,7 @@ class AttributeHelper {
       '#hour_format' => 24,
       '#first_day' => \Drupal::config('system.date')->get('first_day'),
       '#disable_days' => [],
+      '#allow_seconds' => FALSE,
       '#allow_times' => 60,
       '#allowed_hours' => Json::encode(range(0, 23)),
       '#inline' => '0',

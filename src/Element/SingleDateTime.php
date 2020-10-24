@@ -87,6 +87,7 @@ class SingleDateTime extends FormElement {
     // Default settings.
     $settings = [
       'data-hour-format' => $element['#hour_format'],
+      'data-allow-seconds' => !empty($element['#allow_seconds']) ? 1 : 0,
       'data-allow-times' => (int) $element['#allow_times'],
       'data-allowed-hours' => Json::encode($allowed_hours),
       'data-first-day' => $first_day,
