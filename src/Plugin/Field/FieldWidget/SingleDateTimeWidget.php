@@ -2,7 +2,6 @@
 
 namespace Drupal\single_datetime\Plugin\Field\FieldWidget;
 
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;

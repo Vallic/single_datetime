@@ -215,10 +215,10 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase {
   public function settingsSummary() {
     $summary = [];
 
-    $summary[] = t('Hours Format: @hour_format', ['@hour_format' => $this->getSetting('hour_format')]);
-    $summary[] = t('Set Seconds default 00: @allow_seconds', ['@allow_seconds' => !empty($this->getSetting('allow_seconds')) ? t('Yes') : t('No')]);
-    $summary[] = t('Minutes Granularity: @allow_times', ['@allow_times' => $this->getSetting('allow_times')]);
-    $summary[] = t('Allowed hours: @allowed_hours', ['@allowed_hours' => !empty($this->getSetting('allowed_hours')) ? $this->getSetting('allowed_hours') : t('All hours are allowed')]);
+    $summary[] = $this->t('Hours Format: @hour_format', ['@hour_format' => $this->getSetting('hour_format')]);
+    $summary[] = $this->t('Set Seconds default 00: @allow_seconds', ['@allow_seconds' => !empty($this->getSetting('allow_seconds')) ? $this->t('Yes') : $this->t('No')]);
+    $summary[] = $this->t('Minutes Granularity: @allow_times', ['@allow_times' => $this->getSetting('allow_times')]);
+    $summary[] = $this->t('Allowed hours: @allowed_hours', ['@allowed_hours' => !empty($this->getSetting('allowed_hours')) ? $this->getSetting('allowed_hours') : $this->t('All hours are allowed')]);
 
     $options = [
       '1' => $this->t('Monday'),
@@ -244,17 +244,17 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase {
     $year_start = $this->getSetting('year_start');
     $year_end = $this->getSetting('year_end');
 
-    $summary[] = t('Disabled days: @disabled_days', ['@disabled_days' => !empty($disabled_days) ? $disabled_days : t('None')]);
-    $summary[] = t('Disabled dates: @disabled_dates', ['@disabled_dates' => !empty($this->getSetting('exclude_date')) ? $this->getSetting('exclude_date') : t('None')]);
-    $summary[] = t('Display inline widget: @render_widget', ['@render_widget' => !empty($this->getSetting('inline')) ? t('Yes') : t('No')]);
-    $summary[] = t('Use mask: @mask', ['@mask' => !empty($this->getSetting('mask')) ? t('Yes') : t('No')]);
-    $summary[] = t('Theme: @theme', ['@theme' => ucfirst($this->getSetting('datetimepicker_theme'))]);
-    $summary[] = t('Start date: @start_date', ['@start_date' => !empty($start_date) ? $start_date : t('Today')]);
-    $summary[] = t('Minimum date/time: @min_date', ['@min_date' => !empty($min_date) ? $min_date : t('None')]);
-    $summary[] = t('Maximum date/time: @max_date', ['@max_date' => !empty($max_date) ? $max_date : t('None')]);
-    $summary[] = t('Start year: @year_start', ['@year_start' => !empty($year_start) ? $year_start : t('None')]);
-    $summary[] = t('End year: @year_end', ['@year_end' => !empty($year_end) ? $year_end : t('None')]);
-    $summary[] = t('Allow blank: @allow_blank', ['@allow_blank' => !empty($this->getSetting('allow_blank')) ? t('Yes') : t('No')]);
+    $summary[] = $this->t('Disabled days: @disabled_days', ['@disabled_days' => !empty($disabled_days) ? $disabled_days : $this->t('None')]);
+    $summary[] = $this->t('Disabled dates: @disabled_dates', ['@disabled_dates' => !empty($this->getSetting('exclude_date')) ? $this->getSetting('exclude_date') : $this->t('None')]);
+    $summary[] = $this->t('Display inline widget: @render_widget', ['@render_widget' => !empty($this->getSetting('inline')) ? $this->t('Yes') : $this->t('No')]);
+    $summary[] = $this->t('Use mask: @mask', ['@mask' => !empty($this->getSetting('mask')) ? $this->t('Yes') : $this->t('No')]);
+    $summary[] = $this->t('Theme: @theme', ['@theme' => ucfirst($this->getSetting('datetimepicker_theme'))]);
+    $summary[] = $this->t('Start date: @start_date', ['@start_date' => !empty($start_date) ? $start_date : $this->t('Today')]);
+    $summary[] = $this->t('Minimum date/time: @min_date', ['@min_date' => !empty($min_date) ? $min_date : $this->t('None')]);
+    $summary[] = $this->t('Maximum date/time: @max_date', ['@max_date' => !empty($max_date) ? $max_date : $this->t('None')]);
+    $summary[] = $this->t('Start year: @year_start', ['@year_start' => !empty($year_start) ? $year_start : $this->t('None')]);
+    $summary[] = $this->t('End year: @year_end', ['@year_end' => !empty($year_end) ? $year_end : $this->t('None')]);
+    $summary[] = $this->t('Allow blank: @allow_blank', ['@allow_blank' => !empty($this->getSetting('allow_blank')) ? $this->t('Yes') : $this->t('No')]);
 
     return $summary;
   }
