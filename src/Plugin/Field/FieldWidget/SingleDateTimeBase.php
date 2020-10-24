@@ -257,7 +257,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase {
     // storage timezone and format.
     foreach ($values as &$item) {
 
-      if (!empty($item['value'])) {
+      if (!empty($item['value']) && !preg_match('/____|__-__/m', $item['value'])) {
 
         // Date value is now string not instance of DrupalDateTime (without T).
         // String needs to be converted to DrupalDateTime.
