@@ -59,6 +59,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase {
       'inline' => FALSE,
       'mask' => FALSE,
       'datetimepicker_theme' => 'default',
+      'start_date' => '',
       'min_date' => '',
       'max_date' => '',
       'year_start' => '',
@@ -160,6 +161,14 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase {
       '#default_value' => $this->getSetting('datetimepicker_theme'),
       '#required' => FALSE,
     ];
+    $elements['start_date'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Start date'),
+      '#description' => $this->t('Initial date to display when the input has no value and the picker is opened',
+        [':external' => 'https://xdsoft.net/jqplugins/datetimepicker/']),
+      '#default_value' => $this->getSetting('start_date'),
+      '#required' => FALSE,
+    ];
     $elements['min_date'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Set a limit to the minimum date/time allowed to pick.'),
@@ -229,6 +238,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase {
     }
 
     $disabled_days = implode(',', $disabled_days);
+    $start_date = $this->getSetting('start_date');
     $min_date = $this->getSetting('min_date');
     $max_date = $this->getSetting('max_date');
     $year_start = $this->getSetting('year_start');
@@ -239,6 +249,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase {
     $summary[] = t('Display inline widget: @render_widget', ['@render_widget' => !empty($this->getSetting('inline')) ? t('Yes') : t('No')]);
     $summary[] = t('Use mask: @mask', ['@mask' => !empty($this->getSetting('mask')) ? t('Yes') : t('No')]);
     $summary[] = t('Theme: @theme', ['@theme' => ucfirst($this->getSetting('datetimepicker_theme'))]);
+    $summary[] = t('Start date: @start_date', ['@start_date' => !empty($start_date) ? $start_date : t('Today')]);
     $summary[] = t('Minimum date/time: @min_date', ['@min_date' => !empty($min_date) ? $min_date : t('None')]);
     $summary[] = t('Maximum date/time: @max_date', ['@max_date' => !empty($max_date) ? $max_date : t('None')]);
     $summary[] = t('Start year: @year_start', ['@year_start' => !empty($year_start) ? $year_start : t('None')]);
@@ -329,6 +340,7 @@ abstract class SingleDateTimeBase extends DateTimeWidgetBase {
       '#inline' => $this->getSetting('inline'),
       '#mask' => $this->getSetting('mask'),
       '#datetimepicker_theme' => $this->getSetting('datetimepicker_theme'),
+      '#start_date' => $this->getSetting('start_date'),
       '#min_date' => $this->getSetting('min_date'),
       '#max_date' => $this->getSetting('max_date'),
       '#year_start' => $this->getSetting('year_start'),

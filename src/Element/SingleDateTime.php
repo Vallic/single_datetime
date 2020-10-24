@@ -109,6 +109,11 @@ class SingleDateTime extends FormElement {
       $settings['data-year-end'] = $element['#year_end'];
     }
 
+    // Start date.
+    if (strlen($element['#start_date'])) {
+      $settings['data-start-date'] = $element['#start_date'];
+    }
+
     // Min/Max date settings.
     if (strlen($element['#min_date'])) {
       $settings['data-min-date'] = $element['#min_date'];

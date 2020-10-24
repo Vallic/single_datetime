@@ -82,6 +82,9 @@
         // Get excluded dates.
         var disabledDates = input.data("excludeDate");
 
+        // Get start date.
+        var startDate = input.data("startDate");
+
         // Get minimum date.
         var minDate = input.data("minDate");
 
@@ -141,6 +144,7 @@
           formatDate: "d.m.Y",
           inline: inline,
           mask: mask,
+          startDate: startDate,
           minDate: minDate,
           maxDate: maxDate,
           yearStart: yearStart,
