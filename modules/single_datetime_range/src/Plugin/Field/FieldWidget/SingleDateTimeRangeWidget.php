@@ -1,11 +1,13 @@
 <?php
 
-namespace Drupal\single_datetime\Plugin\Field\FieldWidget;
+namespace Drupal\single_datetime_range\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
+use Drupal\single_datetime\Plugin\Field\FieldWidget\SingleDateTimeBase;
 
 /**
  * Plugin implementation of the 'daterange_default' widget.
@@ -130,6 +132,85 @@ class SingleDateTimeRangeWidget extends SingleDateTimeBase {
         }
       }
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
+    // The widget form element type has transformed the value to a
+    // DrupalDateTime object at this point. We need to convert it back to the
+    // storage timezone and format.
+    foreach ($values as &$item) {
+
+      if (!empty($item['value'])) {
+        // Date value is now string not instance of DrupalDateTime (without T).
+        // String needs to be converted to DrupalDateTime.
+        $start_date = new DrupalDateTime($item['value']);
+        switch ($this->getFieldSetting('datetime_type')) {
+          // Dates only.
+          case DateRangeItem::DATETIME_TYPE_DATE:
+            // If this is a date-only field, set it to the default time so the
+            // timezone conversion can be reversed.
+            $start_date->setDefaultDateTime();
+            $format = DateTimeItemInterface::DATE_STORAGE_FORMAT;
+            break;
+
+          // All day.
+          case DateRangeItem::DATETIME_TYPE_ALLDAY:
+            // All day fields start at midnight on the starting date, but are
+            // stored like datetime fields, so we need to adjust the time.
+            // This function is called twice, so to prevent a double conversion
+            // we need to explicitly set the timezone.
+            $start_date->setTimeZone(timezone_open(date_default_timezone_get()));
+            $start_date->setTime(0, 0, 0);
+            $format = DateTimeItemInterface::DATETIME_STORAGE_FORMAT;
+            break;
+
+          // Date and time.
+          default:
+            $format = DateTimeItemInterface::DATETIME_STORAGE_FORMAT;
+            break;
+        }
+        // Adjust the date for storage.
+        $start_date->setTimezone(new \DateTimezone(DateTimeItemInterface::STORAGE_TIMEZONE));
+        $item['value'] = $start_date->format($format);
+      }
+
+      // This is case for daterange field.
+      if (!empty($item['end_value'])) {
+
+        // Convert string to DrupalDateTime.
+        $end_date = new DrupalDateTime($item['end_value']);
+        switch ($this->getFieldSetting('datetime_type')) {
+          case DateRangeItem::DATETIME_TYPE_DATE:
+            // If this is a date-only field, set it to the default time so the
+            // timezone conversion can be reversed.
+            $end_date->setDefaultDateTime();
+            $format = DateTimeItemInterface::DATE_STORAGE_FORMAT;
+            break;
+
+          case DateRangeItem::DATETIME_TYPE_ALLDAY:
+            // All day fields end at midnight on the end date, but are
+            // stored like datetime fields, so we need to adjust the time.
+            // This function is called twice, so to prevent a double conversion
+            // we need to explicitly set the timezone.
+            $end_date->setTimeZone(timezone_open(date_default_timezone_get()));
+            $end_date->setTime(23, 59, 59);
+            $format = DateTimeItemInterface::DATETIME_STORAGE_FORMAT;
+            break;
+
+          default:
+            $format = DateTimeItemInterface::DATETIME_STORAGE_FORMAT;
+            break;
+        }
+        // Adjust the date for storage.
+        $end_date->setTimezone(new \DateTimezone(DateTimeItemInterface::STORAGE_TIMEZONE));
+        $item['end_value'] = $end_date->format($format);
+      }
+    }
+
+    return $values;
   }
 
 }

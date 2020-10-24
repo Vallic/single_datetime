@@ -2,6 +2,7 @@
 
 namespace Drupal\single_datetime\Plugin\Field\FieldWidget;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
@@ -39,22 +40,17 @@ class SingleDateTimeWidget extends SingleDateTimeBase {
       '#description' => $element['#description'],
     ];
 
-    // Identify the type of date and time elements to use.
-    switch ($date_type) {
-      case DateTimeItem::DATETIME_TYPE_DATE:
-        // A date-only field should have no timezone conversion performed, so
-        // use the same timezone as for storage.
-        $element['value']['#date_timezone'] = DateTimeItemInterface::STORAGE_TIMEZONE;
+    if ($date_type === DateTimeItem::DATETIME_TYPE_DATE) {
+      // A date-only field should have no timezone conversion performed, so
+      // use the same timezone as for storage.
+      $element['value']['#date_timezone'] = DateTimeItemInterface::STORAGE_TIMEZONE;
 
-        // If field is date only, use default time format.
-        $format = DateTimeItemInterface::DATE_STORAGE_FORMAT;
-        break;
-
-      default:
-        // Assign the time format, because time will be saved in 24hrs format
-        // in database.
-        $format = ($this->getSetting('hour_format') === '12h') ? 'Y-m-d h:i:s A' : 'Y-m-d H:i:s';
-        break;
+      // If field is date only, use default time format.
+      $format = DateTimeItemInterface::DATE_STORAGE_FORMAT;
+    } else {
+      // Assign the time format, because time will be saved in 24hrs format
+      // in database.
+      $format = ($this->getSetting('hour_format') === '12h') ? 'Y-m-d h:i:s A' : 'Y-m-d H:i:s';
     }
 
     // Merge with elements settings.
