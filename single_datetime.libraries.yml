@@ -4,11 +4,11 @@ datetimepicker:
     name: MIT
     gpl-compatible: false
   js:
-    /libraries/datetimepicker/build/jquery.datetimepicker.full.js: {}
+    /libraries/jquery-datetimepicker/build/jquery.datetimepicker.full.js: {}
     js/drupal.single_datetime.js: {}
   css:
     component:
-      /libraries/datetimepicker/build/jquery.datetimepicker.min.css: {}
+      /libraries/jquery-datetimepicker/build/jquery.datetimepicker.min.css: {}
   dependencies:
     - core/jquery
     - core/drupal
