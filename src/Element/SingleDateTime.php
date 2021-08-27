@@ -148,7 +148,7 @@ class SingleDateTime extends FormElement {
 
     // Prevent keyboard on mobile devices, but only if allowBlank is false
     // otherwise a user won't be able to delete a date.
-    if (!$element['#allow_blank']) {
+    if (isset($element['#allow_blank']) && !$element['#allow_blank']) {
       $element['#attributes']['onfocus'] = 'blur();';
     }
 
