@@ -52,9 +52,11 @@ function single_datetime_exposed_form_views_exposed_form_alter(&$form, FormState
             $form[$field_name]['max']['#attributes'] = $attributes;
 
             // Adjust titles.
-            $field_title = $form[$field_name]['min']['#title'];
-            $form[$field_name]['min']['#title'] = $field_title . ' ( ' . t('From') . ' )';
-            $form[$field_name]['max']['#title'] = $field_title . ' ( ' . t('To') . ' )';
+            if (isset($form[$field_name]['min']['#title'])) {
+              $field_title = $form[$field_name]['min']['#title'];
+              $form[$field_name]['min']['#title'] = $field_title . ' ( ' . t('From') . ' )';
+              $form[$field_name]['max']['#title'] = $field_title . ' ( ' . t('To') . ' )';
+            }
 
             // On between filters when end value is empty, sometimes filters
             // are not working. So set end value.
