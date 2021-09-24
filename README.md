@@ -52,12 +52,23 @@ INSTALLATION
        Download https://github.com/xdan/datetimepicker/archive/2.5.20.zip,
        and extract inside drupal root folder: libraries/datetimepicker
 
-    2. Composer as an npm asset.
-       `composer require "npm-asset/jquery-datetimepicker":"^2.5"`
-       Ensure composer packages of type npm-asset are
-       configured to install to the appropriate path.
+    2. Using Drupal library definition.
 
-    3. Using packagist for JS libraries
+       [Ensure composer packages of type drupal-library are configured to install to the appropriate path.](https://www.drupal.org/docs/develop/using-composer/using-composer-to-install-drupal-and-manage-dependencies#installer-dirs)
+    ```
+    "extra": {
+        "drupal-libraries": {
+            "jquery-datetimepicker": "https://github.com/xdan/datetimepicker/archive/2.5.20.zip"
+         },
+    }
+    ```
+    3. Composer as npm asset.
+       `composer require "npm-asset/jquery-datetimepicker":"^2.5"`
+
+       [Ensure composer packages of type npm-asset are
+       configured to install to the appropriate path.](https://www.drupal.org/docs/develop/using-composer/using-composer-to-install-drupal-and-manage-dependencies#third-party-libraries)
+
+    4. Using packagist for JS libraries
        https://asset-packagist.org/
 
 CONFIGURATION
